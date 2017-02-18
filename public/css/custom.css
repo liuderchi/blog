@@ -1,0 +1,50 @@
+/* poole.css */
+
+/* post title in post list*/
+h1.post-title a {
+  color: #303030!important;
+}
+h1.post-title a:hover {
+  color: #bf4d28!important;
+  text-decoration: none;
+}
+
+.post {
+  border-bottom: solid 1px #ddd;
+}
+
+.content a {
+  color: #bf4d28!important;
+}
+
+
+/* hyde.css */
+
+/* Sidebar links */
+.sidebar a {
+  color: #655643;
+}
+
+.sidebar p {
+  color: #655643;
+  font-size: 1rem;
+}
+
+/* About section */
+.sidebar-about h1 {
+  font-size: 2.8rem;
+}
+
+.sidebar-about a:hover{
+  text-decoration: none;
+}
+
+/* Sidebar nav */
+.sidebar-nav-item {
+  font-weight: bold;
+}
+
+a.sidebar-nav-item:hover,
+a.sidebar-nav-item:focus {
+  color: #bf4d28;
+}
