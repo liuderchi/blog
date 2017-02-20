@@ -48,3 +48,24 @@ a.sidebar-nav-item:hover,
 a.sidebar-nav-item:focus {
   color: #bf4d28;
 }
+
+span.sidebar-nav-item .list-inline {
+    margin-top: 1em;
+    padding-left: 0;
+    list-style-type: none;
+}
+span.sidebar-nav-item .list-inline li {
+    display: inline-block;
+}
+span.sidebar-nav-item .list-inline .fa-circle {
+    color: rgba(255, 255, 255, 0.5);
+}
+span.sidebar-nav-item .list-inline a:hover .fa-circle {
+    color: #655643;
+}
+span.sidebar-nav-item .list-inline .fa-stack-1x {
+    color: #655643;
+}
+span.sidebar-nav-item .list-inline a:hover .fa-stack-1x {
+    color: #edc951;
+}
