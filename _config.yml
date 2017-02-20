@@ -21,9 +21,6 @@ baseurl:          /blog  #/
 
 author:
   name:           'Te-Chi Liu'
+  githubURL:      https://github.com/liuderchi
 
 paginate:         5
-
-# Custom vars
-github:
-  repo:           https://github.com/liuderchi
