@@ -5,9 +5,29 @@ layout: default
 <div class="post">
   <h1 class="post-title">{{ page.title }}</h1>
   <span class="post-date">{{ page.date | date_to_string }}</span>
-  <div id="toc"></div>
   {{ content }}
 </div>
+
+<!-- TODO let it float -->
+<nav class="col-xs-3 bs-docs-sidebar">
+  <!-- TODO fix toc.js to dynamically generate toc -->
+  <ul id="sidebar" class="nav nav-stacked">
+    <li>
+      <a href="#contents">Contents</a>
+      <ul class="nav nav-stacked">
+        <li><a href="#abstract">Abstract</a></li>
+        <li><a href="#starting-as-an-user">Starting as an User</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#play-around-with-api">Play around with API</a>
+      <ul class="nav nav-stacked">
+        <li><a href="#discovering-issues">Discovering Issues</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
 
 <div class="related">
   <h2>Related Posts</h2>
