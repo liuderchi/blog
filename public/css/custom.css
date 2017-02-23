@@ -17,6 +17,13 @@ h1.post-title a:hover {
   color: #bf4d28!important;
 }
 
+.related-posts a {
+  color: #999!important;
+}
+
+.related-posts a:hover {
+  color: #bf4d28!important;
+}
 
 /* hyde.css */
 
