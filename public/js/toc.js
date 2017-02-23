@@ -5,7 +5,7 @@
       noBackToTopLinks: false,
       title: '',
       minimumHeaders: 3,
-      headers: 'h1, h2, h3, h4, h5, h6',
+      headers: 'h1, h2, h3, h4, h5, h6, h3+ul>li',  // as css elector
       listType: 'ul', // values: [ol|ul]
       showEffect: 'show', // values: [show|slideDown|fadeIn|none]
       showSpeed: 'slow', // set to 0 to deactivate effect
@@ -23,6 +23,9 @@
 
     function createLink (header) {
       var innerText = (header.textContent === undefined) ? header.innerText : header.textContent;
+      if (header.nodeName === "LI") {
+        innerText = header.textContent.slice(0, header.textContent.search('  '));
+      }
       return "<a href='#" + fixedEncodeURIComponent(header.id) + "'>" + innerText + "</a>";
     }
 
@@ -32,7 +35,7 @@
       if (!this.id && previousSiblingName) {
         this.id = $(this).attr( "id", previousSiblingName.replace(/\./g, "-") );
       }
-      return this.id;
+      return this.id || this.nodeName === "LI";
     });
     var output = $(this);
 
@@ -52,7 +55,7 @@
       none: function() { output.html(html); }
     };
 
-    var get_level = function(ele) { return parseInt(ele.nodeName.replace("H", ""), 10); };
+    var get_level = function(ele) { return (ele.nodeName === 'LI') ? 4 : parseInt(ele.nodeName.replace("H", ""), 10); };
     var highest_level = headers.map(function(_, ele) { return get_level(ele); }).get().sort()[0];
     var return_to_top = '<i class="icon-arrow-up back-to-top"> </i>';
 
