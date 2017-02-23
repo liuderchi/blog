@@ -2,12 +2,12 @@ $(document).ready(function() {
   // generate id for header
   $('#toc').toc();
 
-  // apply scrollspy
+  // apply scrollspy for TOC
   $('body').scrollspy({
     target: '.bs-docs-sidebar',
-    offset: 40
+    offset: 60
   });
-  $("#sidebar").affix({
+  $("#toc-sidebar").affix({
     offset: { top: 60 }
   });
 

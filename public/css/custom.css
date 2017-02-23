@@ -13,12 +13,30 @@ h1.post-title a:hover {
   border-bottom: solid 1px #ddd;
 }
 
-.content a {
+.post a {
   color: #bf4d28!important;
 }
 
+.related-posts a {
+  color: #999!important;
+}
+
+.related-posts a:hover {
+  color: #bf4d28!important;
+}
 
 /* hyde.css */
+@media (min-width: 48em) {
+  .content .post {
+      max-width: 34rem;
+  }
+}
+
+@media (min-width: 64em) {
+  .content {
+    margin-left: 20rem;
+  }
+}
 
 /* Sidebar links */
 .sidebar a {
@@ -75,20 +93,20 @@ span.sidebar-nav-item .list-inline a:hover .fa-stack-1x {
     color: #edc951;
 }
 
-/* Bootstrap ScrollSpy */
-.group {
-    background: yellow;
-    width: 200px;
-    height: 500px;
-}
-.group .subgroup {
-    background: orange;
-    width: 150px;
-    height: 200px;
-}
-#sidebar.affix {
+/* Bootstrap Floating TOC */
+#toc-sidebar.affix {
     top: 20px;
     right: 10px;  /* NOTE customize */
+    width: 180px; /* NOTE customize */
+}
+
+@media screen and (max-width: 1300px){
+    #toc-sidebar.affix {
+        display: none;
+    }
+    .content .post {
+        max-width: inherit;
+    }
 }
 /* sidebar */
 .bs-docs-sidebar {
@@ -99,9 +117,9 @@ span.sidebar-nav-item .list-inline a:hover .fa-stack-1x {
 
 /* all links */
 .bs-docs-sidebar .nav>li>a {
-    color: #999;
+    color: #655643;  /* NOTE customize */
     border-left: 2px solid transparent;
-    padding: 4px 20px;
+    padding: 4px 10px;
     font-size: 13px;
     font-weight: 400;
 }
@@ -118,10 +136,10 @@ span.sidebar-nav-item .list-inline a:hover .fa-stack-1x {
 .bs-docs-sidebar .nav>.active>a,
 .bs-docs-sidebar .nav>li>a:hover,
 .bs-docs-sidebar .nav>li>a:focus {
-    color: #563d7c;
+    color: inherit;
     text-decoration: none;
     background-color: transparent;
-    border-left-color: #563d7c;
+    border-left-color: #bf4d28;   /* NOTE customize */
 }
 /* all active links */
 .bs-docs-sidebar .nav>.active>a,
