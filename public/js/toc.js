@@ -59,7 +59,7 @@
     var level = get_level(headers[0]),
       this_level,
       html = settings.title + " <" +settings.listType
-              + " id=\"sidebar\""
+              + " id=\"toc-sidebar\""
               + " class=\"" + settings.classes.list +"\">";
 
     headers.on('click', function() {
