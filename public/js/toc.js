@@ -3,13 +3,13 @@
   $.fn.toc = function(options) {
     var defaults = {
       noBackToTopLinks: false,
-      title: '<i>Jump to...</i>',
+      title: '',
       minimumHeaders: 3,
       headers: 'h1, h2, h3, h4, h5, h6',
-      listType: 'ol', // values: [ol|ul]
+      listType: 'ul', // values: [ol|ul]
       showEffect: 'show', // values: [show|slideDown|fadeIn|none]
       showSpeed: 'slow', // set to 0 to deactivate effect
-      classes: { list: '',
+      classes: { list: 'nav nav-stacked',
                  item: ''
                }
     },
@@ -33,7 +33,9 @@
         this.id = $(this).attr( "id", previousSiblingName.replace(/\./g, "-") );
       }
       return this.id;
-    }), output = $(this);
+    });
+    var output = $(this);
+
     if (!headers.length || headers.length < settings.minimumHeaders || !output.length) {
       $(this).hide();
       return;
@@ -56,7 +58,10 @@
 
     var level = get_level(headers[0]),
       this_level,
-      html = settings.title + " <" +settings.listType + " class=\"" + settings.classes.list +"\">";
+      html = settings.title + " <" +settings.listType
+              + " id=\"sidebar\""
+              + " class=\"" + settings.classes.list +"\">";
+
     headers.on('click', function() {
       if (!settings.noBackToTopLinks) {
         window.location.hash = this.id;
@@ -86,6 +91,8 @@
       level = this_level; // update for the next one
     });
     html += "</"+settings.listType+">";
+    html = "<nav class=\"col-xs-3 bs-docs-sidebar\">"+html+"</nav>";
+
     if (!settings.noBackToTopLinks) {
       $(document).on('click', '.back-to-top', function() {
         $(window).scrollTop(0);
