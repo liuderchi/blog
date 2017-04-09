@@ -1,6 +1,7 @@
 git merge POST DEV --no-ff -m 'merge' \
 && jekyll build \
-&& git add -f _site \
+&& cp -r _site/tags ./ \
+&& git add -f _site tags \
 && git commit --amend -m 'push _site content' \
 && git push -f
 
