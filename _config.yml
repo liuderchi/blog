@@ -24,3 +24,15 @@ author:
   githubURL:      https://github.com/liuderchi
 
 paginate:         5
+
+projects:
+  - name: atom-i18n
+    url: https://atom.io/packages/atom-i18n
+    description: i18n package for atom editor
+    imgSrc: https://i.github-camo.com/e702ec47a3d8e4c1e55e06e1a01266730004b61b/68747470733a2f2f636c6f75642e67697468756275736572636f6e74656e742e636f6d2f6173736574732f343939343730352f32333635323239382f35313233663239342d303336332d313165372d386638662d6539633833663139373130652e706e67
+    flexDir: row
+  - name: react-redux-weather-map
+    url: https://github.com/liuderchi/light-react-redux-weather-map
+    description: simple react redux app using 3rd party weather API
+    imgSrc: https://cloud.githubusercontent.com/assets/4994705/26275925/980eeb08-3d9e-11e7-9ad1-b7929e7d1984.png
+    flexDir: row-reverse

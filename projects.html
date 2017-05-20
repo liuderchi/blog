@@ -1,0 +1,18 @@
+---
+layout: default
+title: Archieves
+---
+
+<ul class="projects">
+
+  {% for project in site.projects %}
+  <li>
+    <h3><a href="{{ project.url }}">{{ project.name }}</a></h3>
+    <div class="project-content" style="flex-direction: {{project.flexDir}}">
+      <p>{{ project.description }}</p>
+      <img src="{{ project.imgSrc }}" alt="project">
+    </div>
+  </li>
+  {% endfor %}
+
+</ul>
