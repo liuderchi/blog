@@ -163,3 +163,25 @@ span.sidebar-nav-item .list-inline a:hover .fa-stack-1x {
     display: block;
 }
 /* Bootstrap ScrollSpy Ends */
+
+/* archives */
+ul.archives li {
+    list-style-type: none;
+}
+
+/* projects */
+ul.projects li {
+    list-style-type: none;
+}
+ul.projects .project-content {
+    display: flex;
+    flex-wrap: wrap;
+}
+ul.projects .project-content p {
+    flex: 1 1 0%;
+    margin: 0 10px;
+}
+ul.projects .project-content img {
+    flex: 1 1 0%;
+    margin: 0 10px;
+}
