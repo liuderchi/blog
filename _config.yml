@@ -72,3 +72,14 @@ projects:
         Injecting Google Map API into component.
     imgSrc: https://cloud.githubusercontent.com/assets/4994705/26275925/980eeb08-3d9e-11e7-9ad1-b7929e7d1984.png
     flexDir: row-reverse
+  - name: Conference Organizer
+    tags:
+      - Python
+      - Google-Cloud-Platform
+      - AngularJS
+    url: https://github.com/liuderchi/fsnd_P4_Conference_Org
+    description: An conference organizer app to help you schedule your conferences.
+        Server is deployed on Google Cloud Platform using and implemented by Python.
+        This project is part of Udacity's Full Stack Nanodegree projects.
+    imgSrc: https://cloud.githubusercontent.com/assets/4994705/26309672/6fe3befe-3f30-11e7-9072-b222db382652.png
+    flexDir: row-reverse
