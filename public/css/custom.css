@@ -174,14 +174,14 @@ ul.projects li {
     list-style-type: none;
 }
 ul.projects .project-content {
-    display: flex;
-    flex-wrap: wrap;
+    /*display: flex;*/
+    /*flex-wrap: wrap;*/
 }
 ul.projects .project-content p {
-    flex: 1 1 0%;
+    /*flex: 1 1 0%;*/
     margin: 0 10px;
 }
 ul.projects .project-content img {
-    flex: 1 1 0%;
+    /*flex: 1 1 0%;*/
     margin: 0 10px;
 }
