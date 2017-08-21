@@ -1,0 +1,1443 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+ <title>Te-Chi's Dev Note</title>
+ <link href="https://liuderchi.github.io/atom.xml" rel="self"/>
+ <link href="https://liuderchi.github.io/"/>
+ <updated>2017-08-21T23:28:25+08:00</updated>
+ <id>https://liuderchi.github.io</id>
+ <author>
+   <name>Te-Chi Liu</name>
+   <email></email>
+ </author>
+
+ 
+ <entry>
+   <title>Flexbox Learning Note And Reviews</title>
+   <link href="https://liuderchi.github.io/2017/04/27/flexbox-learning-note-and-reviews/"/>
+   <updated>2017-04-27T00:00:00+08:00</updated>
+   <id>https://liuderchi.github.io/2017/04/27/flexbox-learning-note-and-reviews</id>
+   <content type="html">&lt;h3 id=&quot;abstract&quot;&gt;Abstract&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;簡單的紀錄學習 Flexbox 的心得，還有一些 Flexbox 的小套路&lt;/li&gt;
+  &lt;li&gt;我學習的課程資源是 Udemy 的 &lt;a href=&quot;https://www.udemy.com/flexbox-tutorial/&quot; title=&quot;course link&quot;&gt;The Complete Flexbox Tutorial: Learn CSS3 Flexbox in 2017&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;這篇文章適合已經了解 flexbox 基本用法的人閱讀，並非從頭開始介紹 flexbox 屬性有什麼效果&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;what-to-solve&quot;&gt;What to solve?&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;簡單的說，就是讓 “排版” 更方便
+    &lt;ul&gt;
+      &lt;li&gt;比方說購物網站的商品列表，我可能想要置中排列，或是分散的排列&lt;/li&gt;
+      &lt;li&gt;這些需求使用可以使用一些 CSS 框架完成，例如 bootstrap 的 &lt;a href=&quot;https://v4-alpha.getbootstrap.com/layout/grid/&quot; title=&quot;bootstrap grid&quot;&gt;grid&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;現在 CSS3 的 flexbox 也提供了同樣的功能，從某些角度來說使用起來可能更簡便&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;flexbox-katas&quot;&gt;flexbox katas&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;flex 屬性的分類：可以從對象來看，分為：父元素（container），以及子元素（item）
+    &lt;ul&gt;
+      &lt;li&gt;排版的對象就是子元素，只是 flexbox 屬性會下在父元素或子元素，均有可能&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;對容器下 flexbox 的基本流程
+    &lt;ol&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;display:flex&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;下 &lt;code class=&quot;highlighter-rouge&quot;&gt;flex-direction&lt;/code&gt; 決定主軸方向
+        &lt;ul&gt;
+          &lt;li&gt;&lt;em&gt;row&lt;/em&gt;, &lt;em&gt;column&lt;/em&gt;, &lt;em&gt;column-reverse&lt;/em&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;下 &lt;code class=&quot;highlighter-rouge&quot;&gt;justify-content&lt;/code&gt; 將元素作軸向調整間距 (main-axis)
+        &lt;ul&gt;
+          &lt;li&gt;&lt;em&gt;flex-start&lt;/em&gt;, &lt;em&gt;space-between&lt;/em&gt;…&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;下 &lt;code class=&quot;highlighter-rouge&quot;&gt;align-item&lt;/code&gt; 對元素做垂直方向移動或伸展 (cross-axis 方向)
+        &lt;ul&gt;
+          &lt;li&gt;&lt;em&gt;stretch&lt;/em&gt;, &lt;em&gt;baseline&lt;/em&gt;, &lt;em&gt;flex-start&lt;/em&gt;, &lt;em&gt;center&lt;/em&gt;…&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;下 &lt;code class=&quot;highlighter-rouge&quot;&gt;flex-wrap&lt;/code&gt; 折行，處理主軸的元素 overflow
+        &lt;ul&gt;
+          &lt;li&gt;&lt;em&gt;nowrap&lt;/em&gt;, &lt;em&gt;wrap&lt;/em&gt;, &lt;em&gt;wrap-reverse&lt;/em&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;em&gt;NOTE&lt;/em&gt; 2. 和 5. 可以用簡短表示法 &lt;code class=&quot;highlighter-rouge&quot;&gt;flex-flow: row nowrap&lt;/code&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;下 &lt;code class=&quot;highlighter-rouge&quot;&gt;align-content&lt;/code&gt;，調整折行後元素之間的間隔
+        &lt;ul&gt;
+          &lt;li&gt;&lt;em&gt;flex-start&lt;/em&gt;, &lt;em&gt;space-between&lt;/em&gt;…&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;對子元素下 flex 的使用情境
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;flex: [flex-grow] [flex-shrink] [flex-basis]&lt;/code&gt;
+        &lt;ul&gt;
+          &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;flex-grow&lt;/code&gt; 講的是如果容器有多餘空間，如何瓜分它（膨脹量的比例值）&lt;/li&gt;
+          &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;flex-shrink&lt;/code&gt; 講的是如果容器空間不足，怎麼壓縮子元素（壓縮量的比例值）&lt;/li&gt;
+          &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;flex-basis&lt;/code&gt; 講的是依據 &lt;code class=&quot;highlighter-rouge&quot;&gt;flex-direction&lt;/code&gt; 設定的方向設定子元素尺寸&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;子元素的尺寸計算流程
+        &lt;ol&gt;
+          &lt;li&gt;依據 flex-basis 算出基本尺寸&lt;/li&gt;
+          &lt;li&gt;考慮有無 a.容器空間有多餘 b.容器空間不夠
+            &lt;ul&gt;
+              &lt;li&gt;如果有，計算對應的膨脹或壓縮&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+          &lt;li&gt;將膨脹或壓縮量加到基本尺寸上&lt;/li&gt;
+        &lt;/ol&gt;
+      &lt;/li&gt;
+      &lt;li&gt;如果要更動少數幾個子元素的順序，下 &lt;code class=&quot;highlighter-rouge&quot;&gt;order&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;use-cases&quot;&gt;Use cases&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;模擬 bootstrap grid 的排版：
+    &lt;ul&gt;
+      &lt;li&gt;對子元素下 &lt;code class=&quot;highlighter-rouge&quot;&gt;flex: 1&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;對特定想要加強寬度的子元素修改 &lt;code class=&quot;highlighter-rouge&quot;&gt;flex-grow&lt;/code&gt;
+        &lt;ul&gt;
+          &lt;li&gt;例如 &lt;code class=&quot;highlighter-rouge&quot;&gt;flex-grow: 3&lt;/code&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cloud.githubusercontent.com/assets/4994705/25486849/02594416-2b95-11e7-9c3c-c1d37e5410b1.png&quot; alt=&quot;demo-flexbox-grid&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;summary&quot;&gt;Summary&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;CSS3 的 flexbox 提供了方便的排版功能，也可以模擬 bootstrap grid 達到 responsive&lt;/li&gt;
+&lt;/ul&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Dev Note for Promise</title>
+   <link href="https://liuderchi.github.io/2017/03/24/dev-note-for-promise/"/>
+   <updated>2017-03-24T00:00:00+08:00</updated>
+   <id>https://liuderchi.github.io/2017/03/24/dev-note-for-promise</id>
+   <content type="html">&lt;h2 id=&quot;abstract&quot;&gt;Abstract&lt;/h2&gt;
+
+&lt;p&gt;第一次接觸 Promise 的時候是在使用 AngularJS 提供的 &lt;code class=&quot;highlighter-rouge&quot;&gt;$http&lt;/code&gt;，它是一個基於 &lt;code class=&quot;highlighter-rouge&quot;&gt;XMLHttpRequest&lt;/code&gt; 的包裝，
+  回傳的物件是符合 &lt;a href=&quot;https://promisesaplus.com/&quot;&gt;Promise/A+&lt;/a&gt; 的 Promise，因此要理解 Promise 的特性與表現，
+  才能夠正確的實作網頁應用中的非同步操作與使用者介面變化流程。&lt;/p&gt;
+
+&lt;p&gt;然而在面對多個具有相依性的非同步操作，程式碼結構會變得複雜難以維護（波動拳式回呼）。
+  因此，希望藉著這個機會好好檢視 &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise&quot;&gt;MDN 文件&lt;/a&gt; 並學習如何撰寫風格良好的 Promise 程式碼。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;promise-behavior-review&quot;&gt;Promise Behavior Review&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Prmoise 就是用一個物件來表示未來會有執行的結果的工作，其 &lt;strong&gt;狀態&lt;/strong&gt; 包含 3 種可能：
+    &lt;ul&gt;
+      &lt;li&gt;pending: 執行中&lt;/li&gt;
+      &lt;li&gt;fulfilled：做了結果成功&lt;/li&gt;
+      &lt;li&gt;rejected：做了結果失敗（不一定做完）&lt;/li&gt;
+      &lt;li&gt;Prmoise 剛建立的時候是 pending，未來只可能會變成 fulfilled 或是 rejected &lt;strong&gt;其中一種&lt;/strong&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;可以對 Promise 繫結你想要的 &lt;em&gt;Callback&lt;/em&gt; 來針對狀態的改變執行對應函式
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;myPromise.then(onFulfilled, onRejected)&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;em&gt;Q：&lt;/em&gt; 什麼時候呼 Callback？
+        &lt;ul&gt;
+          &lt;li&gt;看 &lt;code class=&quot;highlighter-rouge&quot;&gt;myPromise&lt;/code&gt; 狀態&lt;/li&gt;
+          &lt;li&gt;變成 fulfilled 時呼 &lt;code class=&quot;highlighter-rouge&quot;&gt;onFulfilled&lt;/code&gt;&lt;/li&gt;
+          &lt;li&gt;變成 rejected 時呼 &lt;code class=&quot;highlighter-rouge&quot;&gt;onRejected&lt;/code&gt;&lt;/li&gt;
+          &lt;li&gt;該 Promise 有結果的時候，狀態就會變&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;em&gt;Q：&lt;/em&gt; 這兩個 Callback 可以做什麼？
+        &lt;ul&gt;
+          &lt;li&gt;接收 &lt;code class=&quot;highlighter-rouge&quot;&gt;myPromise&lt;/code&gt; 提供的訊息並處理，舉例來說
+            &lt;ul&gt;
+              &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;myPromise&lt;/code&gt; 成功的話寫 &lt;code class=&quot;highlighter-rouge&quot;&gt;onFulfilled(val)&lt;/code&gt; 處理執行結果&lt;/li&gt;
+              &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;myPromise&lt;/code&gt; 失敗寫 &lt;code class=&quot;highlighter-rouge&quot;&gt;onRejected(reason)&lt;/code&gt; 印出失敗原因&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Promise 可以串聯
+    &lt;ul&gt;
+      &lt;li&gt;因為 &lt;code class=&quot;highlighter-rouge&quot;&gt;myPromise.then()&lt;/code&gt; &lt;strong&gt;必定會回傳一個 Promise 給你接著用&lt;/strong&gt;，不論該 Callback 的結果是成功還是失敗&lt;/li&gt;
+      &lt;li&gt;&lt;em&gt;Q：&lt;/em&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;.then()&lt;/code&gt; 回傳什麼狀態的 Promise？
+        &lt;ul&gt;
+          &lt;li&gt;如果執行 Callback 的時候拋錯（不論是 &lt;code class=&quot;highlighter-rouge&quot;&gt;onFulfilled&lt;/code&gt; 還是 &lt;code class=&quot;highlighter-rouge&quot;&gt;onRejected&lt;/code&gt;），或是最後回傳了另一個 &lt;em&gt;做了結果失敗的 Promise （rejected）&lt;/em&gt; ，
+            &lt;ul&gt;
+              &lt;li&gt;那 &lt;code class=&quot;highlighter-rouge&quot;&gt;.then()&lt;/code&gt; 就會回傳一個狀態為 rejected 的 Promise&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+          &lt;li&gt;如果執行 Callback 的時候（不論是 &lt;code class=&quot;highlighter-rouge&quot;&gt;onFulfilled&lt;/code&gt; 還是 &lt;code class=&quot;highlighter-rouge&quot;&gt;onRejected&lt;/code&gt;）回傳了任何值（包含 undefined），或是最後回傳了另一個 &lt;em&gt;做了結果成功的 Promise （fulfilled）&lt;/em&gt;
+            &lt;ul&gt;
+              &lt;li&gt;那 &lt;code class=&quot;highlighter-rouge&quot;&gt;.then()&lt;/code&gt; 就會回傳一個狀態為 fulfilled 的 Promise&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;所以 &lt;code class=&quot;highlighter-rouge&quot;&gt;.then()&lt;/code&gt; 回傳什麼樣的 Promise 要等 Callback 的結果才會知道
+        &lt;ul&gt;
+          &lt;li&gt;因為要等，所以這樣就能夠讓多個 Async 的工作有一定的執行順序&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;所以 &lt;code class=&quot;highlighter-rouge&quot;&gt;.then(...)&lt;/code&gt; 可以串聯接著用，像是鎖鏈&lt;/li&gt;
+      &lt;li&gt;練習以 Promise 鎖鏈造句：家長對小孩的期待&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;beGoodKid&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;beGoodStudent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;...)&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;workSuccess&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;...)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;promise-chain-practice&quot;&gt;Promise Chain Practice&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;好習慣：&lt;code class=&quot;highlighter-rouge&quot;&gt;onFulfilled&lt;/code&gt; 函式回傳一個 Promise
+    &lt;ul&gt;
+      &lt;li&gt;因為根據上一段，&lt;code class=&quot;highlighter-rouge&quot;&gt;.then()&lt;/code&gt; 在內部的 Callback 如果回傳了 rejected Promise，那 &lt;code class=&quot;highlighter-rouge&quot;&gt;.then()&lt;/code&gt; 最後就會回傳該 rejected Promise&lt;/li&gt;
+      &lt;li&gt;這樣可以讓鎖鏈的下一個 &lt;code class=&quot;highlighter-rouge&quot;&gt;.then()&lt;/code&gt; 根據上一個 Promise 的狀態來做對應處理&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;所以可以這樣說，&lt;code class=&quot;highlighter-rouge&quot;&gt;.then()&lt;/code&gt; 要提供 &lt;code class=&quot;highlighter-rouge&quot;&gt;onRejected&lt;/code&gt;，才可以處理前面產生的 rejected 的 Promise&lt;/li&gt;
+  &lt;li&gt;但是，每一個 &lt;code class=&quot;highlighter-rouge&quot;&gt;myPromise.then().then()&lt;/code&gt; 裏面都要寫一個 &lt;code class=&quot;highlighter-rouge&quot;&gt;onRejected&lt;/code&gt; 實在是不好維護&lt;/li&gt;
+  &lt;li&gt;&lt;em&gt;Q：&lt;/em&gt; 如果不提供 &lt;code class=&quot;highlighter-rouge&quot;&gt;onRejected&lt;/code&gt; 的話會怎樣？
+    &lt;ul&gt;
+      &lt;li&gt;例如：&lt;code class=&quot;highlighter-rouge&quot;&gt;myPromise.then(onFulfilled)&lt;/code&gt;
+        &lt;ul&gt;
+          &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;myPromise&lt;/code&gt; 最後 fulfilled 的話就照原先，執行 &lt;code class=&quot;highlighter-rouge&quot;&gt;onFulfilled&lt;/code&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;myPromise&lt;/code&gt; 最後 rejected 的話 &lt;code class=&quot;highlighter-rouge&quot;&gt;.then()&lt;/code&gt; 就會回傳原本就是 rejected 的 &lt;code class=&quot;highlighter-rouge&quot;&gt;myPromise&lt;/code&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;按：你不提供處理辦法，我就丟給下一位&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;所以，這裡提供另一個好習慣：在鎖鏈的尾端要有 &lt;code class=&quot;highlighter-rouge&quot;&gt;onRejected&lt;/code&gt; 處理先前任一 Promise 所產生的失敗結果
+    &lt;ul&gt;
+      &lt;li&gt;或者使用只處理 rejected 狀態的 &lt;code class=&quot;highlighter-rouge&quot;&gt;myPromise.catch(onRejected)&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;這樣可以寫出好讀的 Promise 鎖鏈&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;鎖鏈造句：家長對小孩的期待範例（二）&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;beGoodKid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;beGoodStudent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// it&#39;s async&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;workSuccess&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;    &lt;span class=&quot;c1&quot;&gt;// it&#39;s async&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;warn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;your parents are angry&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;按：只要一件事情沒做好，後面就沒機會了。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;一個很喜歡的簡潔範例，以 Promise 結合 array 的 &lt;code class=&quot;highlighter-rouge&quot;&gt;reduce()&lt;/code&gt;，依序於 Atom 編輯器開啟多個檔案&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kr&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;path&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;path&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kr&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;os&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;os&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kr&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;paths&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;file.one&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;file.two&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;file.three&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;paths&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;reduce&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;cur&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;nextPath&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;cur&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// return .then() for next promise&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;atom&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;workspace&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;open&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;nextPath&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// return an open job as a promise&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Promise&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;resolve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;start&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// init promise&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;summary&quot;&gt;Summary&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Promise 專門用來處理未來才會完成的工作，以狀態來表現工作結果&lt;/li&gt;
+  &lt;li&gt;使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;.then(onFulfilled, onRejected)&lt;/code&gt; 讓 Promise 的狀態變化會觸發對應的 Callback&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;.then()&lt;/code&gt; 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;.catch()&lt;/code&gt; 必定回傳一個 Promise ，這個特性讓你可以把 Promise 串成鎖鏈，有相依性的執行數個非同步工作&lt;/li&gt;
+  &lt;li&gt;養成良好的 Promise 鎖鏈習慣可以讓你撰寫好維護的程式碼&lt;/li&gt;
+&lt;/ul&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>How Underscore Extends Object</title>
+   <link href="https://liuderchi.github.io/2017/03/22/how-underscore-extends-object/"/>
+   <updated>2017-03-22T00:00:00+08:00</updated>
+   <id>https://liuderchi.github.io/2017/03/22/how-underscore-extends-object</id>
+   <content type="html">&lt;h2 id=&quot;abstract&quot;&gt;Abstract&lt;/h2&gt;
+
+&lt;p&gt;I’ve planning to learn to write efficient js code.
+  Learning from open source is a good idea.
+  Also, I’ve been confused about how &lt;code class=&quot;highlighter-rouge&quot;&gt;_.extend()&lt;/code&gt; differs from &lt;code class=&quot;highlighter-rouge&quot;&gt;extends&lt;/code&gt; from ES6
+  So let’s jump into the really famous JavaScript Utility Library [Underscore.js][http://underscorejs.org/]!&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;underscore-source&quot;&gt;Underscore Source&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;version: &lt;em&gt;v1.8.3&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;description:
+    &lt;ul&gt;
+      &lt;li&gt;&lt;em&gt;Shallowly copy all of the properties in the source objects over to the destination object, and return the destination object. Any nested objects or arrays will be copied by reference, not duplicated. It’s in-order, so the last source will override properties of the same name in previous arguments.&lt;/em&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;usage:
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;_.extend({name: &#39;moe&#39;}, {age: 50});
+  =&amp;gt; {name: &#39;moe&#39;, age: 50}&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;reviews-from-code&quot;&gt;Reviews from code&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;_.extend = createAssigner(_.allKeys)&lt;/code&gt; returns a function (&lt;a href=&quot;https://github.com/jashkenas/underscore/blob/1.8.3/underscore.js#L99&quot; title=&quot;L99&quot;&gt;&lt;em&gt;L99&lt;/em&gt;&lt;/a&gt;)&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;createAssigner&lt;/code&gt; is a closure accessing &lt;code class=&quot;highlighter-rouge&quot;&gt;keysFunc&lt;/code&gt; as helper function
+    &lt;ul&gt;
+      &lt;li&gt;in this case &lt;code class=&quot;highlighter-rouge&quot;&gt;keysFunc&lt;/code&gt; is &lt;code class=&quot;highlighter-rouge&quot;&gt;_.allKeys&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;_.allKeys&lt;/code&gt; used to get keys from an object (&lt;a href=&quot;https://github.com/jashkenas/underscore/blob/1.8.3/underscore.js#L939&quot; title=&quot;L939&quot;&gt;&lt;em&gt;L939~L945&lt;/em&gt;&lt;/a&gt;)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;flow of &lt;code class=&quot;highlighter-rouge&quot;&gt;_.extend&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;it first check &lt;code class=&quot;highlighter-rouge&quot;&gt;arguments.length&lt;/code&gt;, when it’s one it returns the object itself (&lt;a href=&quot;https://github.com/jashkenas/underscore/blob/1.8.3/underscore.js#L100&quot; title=&quot;L100&quot;&gt;&lt;em&gt;L100~L101&lt;/em&gt;&lt;/a&gt;)&lt;/li&gt;
+      &lt;li&gt;looping from 2nd object to last object (&lt;a href=&quot;https://github.com/jashkenas/underscore/blob/1.8.3/underscore.js#L102&quot; title=&quot;L102&quot;&gt;&lt;em&gt;L102&lt;/em&gt;&lt;/a&gt;)
+        &lt;ul&gt;
+          &lt;li&gt;for each object get keys and length of keys, looping (&lt;a href=&quot;https://github.com/jashkenas/underscore/blob/1.8.3/underscore.js#L106&quot; title=&quot;L106&quot;&gt;&lt;em&gt;L106&lt;/em&gt;&lt;/a&gt;)
+            &lt;ul&gt;
+              &lt;li&gt;for each key, set property onto first object (&lt;a href=&quot;https://github.com/jashkenas/underscore/blob/1.8.3/underscore.js#L108&quot; title=&quot;L108&quot;&gt;&lt;em&gt;L108&lt;/em&gt;&lt;/a&gt;)
+                &lt;ul&gt;
+                  &lt;li&gt;shallow copy&lt;/li&gt;
+                  &lt;li&gt;&lt;em&gt;Any nested objects or arrays will be copied by reference, not duplicated&lt;/em&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+              &lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// An internal function for creating assigner functions.&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;createAssigner&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;keysFunc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;undefinedOnly&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;obj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;length&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;arguments&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;length&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;obj&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;obj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;index&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;index&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;source&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;arguments&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+          &lt;span class=&quot;nx&quot;&gt;keys&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;keysFunc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;source&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+          &lt;span class=&quot;nx&quot;&gt;l&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;keys&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;key&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;keys&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;undefinedOnly&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;obj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;obj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;source&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;obj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;summary&quot;&gt;Summary&lt;/h2&gt;
+
+&lt;p&gt;we can find that what &lt;code class=&quot;highlighter-rouge&quot;&gt;_.extend()&lt;/code&gt; does is basically looping over property of objects from second one to last one, grabbing properties and put them on first objects. Worth noticing is that it’s shallow copy and it’s copied by reference if source property is object or array&lt;/p&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Learning Webpack from Scratch</title>
+   <link href="https://liuderchi.github.io/2017/03/16/learning-webpack-from-scratch/"/>
+   <updated>2017-03-16T00:00:00+08:00</updated>
+   <id>https://liuderchi.github.io/2017/03/16/learning-webpack-from-scratch</id>
+   <content type="html">&lt;hr /&gt;
+
+&lt;h2 id=&quot;abstract&quot;&gt;Abstract&lt;/h2&gt;
+
+&lt;p&gt;在網路上逛到了 &lt;a href=&quot;https://laracasts.com/series/webpack-for-everyone&quot; title=&quot;course link&quot;&gt;Webpack for everyone&lt;/a&gt; 這個線上課程。&lt;/p&gt;
+
+&lt;p&gt;正好對於 Webpack 不太熟悉，加上今年 Webpack 剛出了穩定的 2.2.0 版本。
+  於是想藉由這個機會，從這個簡短的課程快速了解 Webpack ，以及常見的使用情境。&lt;/p&gt;
+
+&lt;p&gt;這篇文章會以初學者的角度，紀錄這門課程的一些心得。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;whats-webpack&quot;&gt;What’s Webpack?&lt;/h2&gt;
+
+&lt;p&gt;根據從官網的 README ，
+  Webpack 就是一個 &lt;em&gt;把網頁資源（以 JavaScript 為主）打包為 Module 的工具&lt;/em&gt; 。&lt;/p&gt;
+
+&lt;p&gt;這樣做的好處是，傳輸的檔案數量減少了，可以減少伺服器負荷。
+  另一方面包裝成模組也能讓程式碼重複利用。&lt;/p&gt;
+
+&lt;p&gt;Webpack 重要的功能就是打包時處理各資源之間複雜的 &lt;em&gt;相依性&lt;/em&gt;。&lt;/p&gt;
+
+&lt;p&gt;而在打包的過程中，Webpack 可以引入很多外掛，
+  例如：壓縮 JavaScript，或是處理 Sass，壓縮圖片等。&lt;/p&gt;
+
+&lt;p&gt;接著就讓我們跟著課程來紀錄學到的技巧吧！&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;lec-1-compile&quot;&gt;Lec 1: Compile&lt;/h2&gt;
+
+&lt;p&gt;一開始不免俗的要先建立環境，做個像是 Hello World 般的打包測試。&lt;/p&gt;
+
+&lt;p&gt;a. 建立 &lt;code class=&quot;highlighter-rouge&quot;&gt;webpack-learning&lt;/code&gt; 資料夾，當中建立 &lt;code class=&quot;highlighter-rouge&quot;&gt;src&lt;/code&gt; 作為打包的資料來源。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;`mkdir webpack-learning &amp;amp;&amp;amp; cd webpack-learning; mkdir src`
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;b. 建立一個打包來源 &lt;code class=&quot;highlighter-rouge&quot;&gt;main.js&lt;/code&gt;，撰寫一行程式碼。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;`echo &quot;alert(&#39;hello world&#39;)&quot; &amp;gt; src/main.js`
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;c. 由 npm 作為開發專案環境及下載 Webpack 工具。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;`npm init &amp;amp;&amp;amp; npm install webpack --save-dev`
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;d. 可以開始打包囉，工具放在 &lt;code class=&quot;highlighter-rouge&quot;&gt;node_modules/.bin/webpack&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;`./node_modules/.bin/webpack src/main.js dist/bundle.js`
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;可以看出打包產生了 &lt;code class=&quot;highlighter-rouge&quot;&gt;bundle.js&lt;/code&gt; 放在 &lt;code class=&quot;highlighter-rouge&quot;&gt;dist&lt;/code&gt; 之下，
+  而這個指令也可以搭配 &lt;code class=&quot;highlighter-rouge&quot;&gt;--watch&lt;/code&gt; 選項來監控來源檔案的變化以自動更新打包。&lt;/p&gt;
+
+&lt;p&gt;最後，我們可以從 bundle.js 中搜尋到
+  &lt;code class=&quot;highlighter-rouge&quot;&gt;main.js&lt;/code&gt; 中所寫的程式碼，確認 &lt;code class=&quot;highlighter-rouge&quot;&gt;bundle.js&lt;/code&gt; 真的包含來源的程式碼。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;lec-2-compile-with-webpackconfigjs&quot;&gt;Lec 2: compile with webpack.config.js&lt;/h2&gt;
+&lt;p&gt;而一般來說打包牽涉的檔案很多，不方便用一行一行指令完成，
+  所以接著介紹如何使用一般的設定檔來設定 Webpack，
+  建立模組 &lt;code class=&quot;highlighter-rouge&quot;&gt;webpack.config.js&lt;/code&gt;，打包時會參考這個模組。&lt;/p&gt;
+
+&lt;p&gt;模組的輸出（export）會包含來源以及目標，之後還會加入規則（rule）。
+  這就是打包流程的核心所在。&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// webpack.config.js&lt;/span&gt;
+&lt;span class=&quot;kr&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;webpack&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;webpack&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kr&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;path&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;path&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;exports&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;entry&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;resolve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;src&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;main.js&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// abs path&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;output&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;resolve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;dist&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// abs path&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;filename&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;bundle.js&#39;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;lec-3-modules-are-simply-files&quot;&gt;Lec 3: Modules Are Simply Files&lt;/h2&gt;
+&lt;p&gt;這堂課主要是在說
+  如果來源的 &lt;code class=&quot;highlighter-rouge&quot;&gt;main.js&lt;/code&gt; 如果有 import 其他模組，
+  Webpack 也會一並將該模組帶入處理，&lt;/p&gt;
+
+&lt;p&gt;可以從 &lt;code class=&quot;highlighter-rouge&quot;&gt;bundle.js&lt;/code&gt; 看到所引入的模組的程式碼。&lt;/p&gt;
+
+&lt;p&gt;例外講者另外介紹了 Node 模組與 ES6 模組的語法差異。
+  兩者引入模組與輸出模組使用了不同的語法。
+  而 Webpack 對兩者都可以支援。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;lec-4-loaders-are-transformers&quot;&gt;* Lec 4: Loaders Are Transformers&lt;/h2&gt;
+&lt;p&gt;這堂課介紹了兩個核心觀念：&lt;code class=&quot;highlighter-rouge&quot;&gt;Loader&lt;/code&gt; 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;rule&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;首先介紹 &lt;code class=&quot;highlighter-rouge&quot;&gt;Loader&lt;/code&gt;，功能是讓 JavaScript 以外的檔案也能夠被處理，打包成模組。
+  有了各種 &lt;code class=&quot;highlighter-rouge&quot;&gt;Loader&lt;/code&gt; 我們就可以打包其他資源，像是圖片，CSS 等等。&lt;/p&gt;
+
+&lt;p&gt;接著使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;npm install css-loader --save-dev&lt;/code&gt; 來安裝 css-loader 和 style-loader
+  這兩個 Loader 的功能分別是：
+    * css-loader 讓 Webpack 讀懂 CSS
+    * style-loader 讓 Webpack 知道如何將 CSS 帶入到模組中&lt;/p&gt;
+
+&lt;p&gt;接著我們還要將 &lt;code class=&quot;highlighter-rouge&quot;&gt;Loader&lt;/code&gt; 帶進 &lt;code class=&quot;highlighter-rouge&quot;&gt;webpack.config.js&lt;/code&gt;
+  方法就是建立一個 &lt;code class=&quot;highlighter-rouge&quot;&gt;rule&lt;/code&gt;，讓 Webpack 知道哪些副檔名的檔案要套用 &lt;code class=&quot;highlighter-rouge&quot;&gt;css-loader&lt;/code&gt;。&lt;/p&gt;
+
+&lt;p&gt;在 &lt;code class=&quot;highlighter-rouge&quot;&gt;module.exports&lt;/code&gt; 建立 &lt;code class=&quot;highlighter-rouge&quot;&gt;module.rules&lt;/code&gt;，塞入一個 object literal，
+  當中包含 &lt;code class=&quot;highlighter-rouge&quot;&gt;test&lt;/code&gt; 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;use&lt;/code&gt; ，指定檔名和 &lt;code class=&quot;highlighter-rouge&quot;&gt;loader&lt;/code&gt;。&lt;/p&gt;
+
+&lt;p&gt;要注意 &lt;code class=&quot;highlighter-rouge&quot;&gt;use&lt;/code&gt; 陣列所輸入的 loader 順序和打包處理順序是相反的。
+  打包的順序應該是先經過 &lt;code class=&quot;highlighter-rouge&quot;&gt;css-loader&lt;/code&gt; 再經過 &lt;code class=&quot;highlighter-rouge&quot;&gt;style-loader&lt;/code&gt;，
+  但是輸入的陣列卻要反過來寫：&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;use: [&#39;style-loader&#39;, &#39;css-loader&#39;]&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;結果就是這樣：&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// webpack.config.js&lt;/span&gt;
+&lt;span class=&quot;kr&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;webpack&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;webpack&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kr&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;path&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;path&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;exports&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;entry&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;resolve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;src&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;main.js&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// abs path&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;output&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;resolve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;dist&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// abs path&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;filename&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;bundle.js&#39;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;rules&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;sr&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\.&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;css$/&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// css file path regex&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;use&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;style-loader&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;css-loader&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// NOTE right to left&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}]}};&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;lec-5-es2015-compilation-with-babel&quot;&gt;Lec 5: ES2015 Compilation With Babel&lt;/h2&gt;
+&lt;p&gt;打包的過程中也可以借助 &lt;code class=&quot;highlighter-rouge&quot;&gt;Babel&lt;/code&gt; 將 ES6 轉譯，以支援更多瀏覽器。
+  這時候要使用 Webpack plugin，首先下載對應的套件與 Babel preset&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;npm install --save-dev babel-loader babel-core babel-preset-es2015&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;建立 &lt;code class=&quot;highlighter-rouge&quot;&gt;.babelrc&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;echo &quot;{\&quot;presets\&quot;:[\&quot;es2015\&quot;]}&quot; &amp;gt; .babelrc&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;就可以讓打包工作支援 ES6 了！&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// webpack.config.js&lt;/span&gt;
+&lt;span class=&quot;kr&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;webpack&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;webpack&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kr&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;path&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;path&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;exports&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;entry&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;resolve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;src&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;main.js&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// abs path&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;output&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;resolve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;dist&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// abs path&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;filename&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;bundle.js&#39;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;rules&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;sr&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\.&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;js$/&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;exclude&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;sr&quot;&gt;/node_modules/&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;loader&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;babel-loader&#39;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}]}};&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;lec-6-minification-and-environments&quot;&gt;Lec 6: Minification and Environments&lt;/h2&gt;
+
+&lt;p&gt;這堂課介紹在 &lt;code class=&quot;highlighter-rouge&quot;&gt;Webpack.config.js&lt;/code&gt; 中加入 plugin&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;webpack.optimize.UglifyJsPlugin()&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;就能夠將打包的檔案進行壓縮處理（minify）。&lt;/p&gt;
+
+&lt;p&gt;我們也可以由環境變數來控制是否打包的時候要壓縮。&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kr&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;webpack&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;webpack&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kr&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;path&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;path&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kr&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;inProduction&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;process&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;NODE_ENV&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;production&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;exports&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;entry&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;resolve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;src&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;main.js&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// abs path&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;output&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;resolve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;dist&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// abs path&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;filename&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;bundle.js&#39;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;rules&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;sr&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\.&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;js$/&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;exclude&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;sr&quot;&gt;/node_modules/&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;loader&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;babel-loader&#39;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}]},&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;plugins&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;inProduction&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;exports&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;plugins&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;webpack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;optimize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;UglifyJsPlugin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;lec-7-sass-compilation&quot;&gt;Lec 7: Sass Compilation&lt;/h2&gt;
+
+&lt;p&gt;介紹如何使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;sass-loader&lt;/code&gt; 將 Sass 檔案轉成 CSS 並套用在網頁上&lt;/p&gt;
+
+&lt;p&gt;現在應該可以發現愈來愈能抓到 Webpack 使用的模式了&lt;/p&gt;
+
+&lt;p&gt;就是安裝對應的 Loader 然後加一個對應的 Rule&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;npm install --save-dev sass-loader node-sass&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;在 &lt;code class=&quot;highlighter-rouge&quot;&gt;use&lt;/code&gt; 的部份要想一下 loader 如何串起來。
+  處理 Sass 檔案的 rule 應該會是這樣：&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;sr&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\.&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;ac&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;ss$/&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// sass, scss&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;use&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;style-loader&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;css-loader&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;sass-loader&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;一樣處理順序是從最後開始，先經過 sass-loader 處理 Sass 成 CSS，
+  再經過 css-loader 理解 CSS，
+  最後再經過 style-loader 將樣式帶到 &lt;code class=&quot;highlighter-rouge&quot;&gt;bundle.js&lt;/code&gt; 中。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;lec-8-extract-css-to-a-dedicated-file&quot;&gt;* Lec 8: Extract CSS to a Dedicated File&lt;/h2&gt;
+&lt;p&gt;這一堂課討論的情境是，
+  有時你還是希望 Sass 檔案不要被包進模組，
+  而是以獨立 CSS 檔案的方式輸出，以供他人維護。&lt;/p&gt;
+
+&lt;p&gt;也就是說，你想要 Webpack 處理 Sass 成為 CSS，
+  但是最後又不要將它包到最終的 &lt;code class=&quot;highlighter-rouge&quot;&gt;bundle.js&lt;/code&gt;
+  而是以 &lt;code class=&quot;highlighter-rouge&quot;&gt;app.css&lt;/code&gt; 輸出。&lt;/p&gt;
+
+&lt;p&gt;這時候我們要再裝一個新的外掛 &lt;code class=&quot;highlighter-rouge&quot;&gt;extract-text-webpack-plugin&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;npm install --save-dev extract-text-webpack-plugin&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;這個外掛可以將現有的 loader 組成一個新的 “Extract Loader”。
+  接著將特定的資源從來源中抽取出來，以不同的方式輸出。
+  新的 &lt;code class=&quot;highlighter-rouge&quot;&gt;module.rules&lt;/code&gt; 項目變成這樣：&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kr&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ExtractTextPlugin&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;extract-text-webpack-plugin&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// ...&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;sr&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\.&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;ac&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;ss$/&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// sass, scss&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;use&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ExtractTextPlugin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;extract&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;use&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;css-loader&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;sass-loader&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;fallback&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;style-loader&#39;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;可以發現它使用了 &lt;code class=&quot;highlighter-rouge&quot;&gt;css-loader&lt;/code&gt; 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;sass-loader&lt;/code&gt; ，將之組成一個 “Extract Loader” 。
+  畢竟 Webpack 還是需要這兩個 loader 才能轉換 Sass 成 CSS。
+  而 &lt;code class=&quot;highlighter-rouge&quot;&gt;fallback&lt;/code&gt; 設定 &lt;code class=&quot;highlighter-rouge&quot;&gt;style-loader&lt;/code&gt; 是針對沒有辦法被抽取出來的 CSS，
+  要繼續用 &lt;code class=&quot;highlighter-rouge&quot;&gt;style-loader&lt;/code&gt; 將樣式帶進 &lt;code class=&quot;highlighter-rouge&quot;&gt;bundle.js&lt;/code&gt;。&lt;/p&gt;
+
+&lt;p&gt;接著在 &lt;code class=&quot;highlighter-rouge&quot;&gt;plugins&lt;/code&gt; 指定 CSS 輸出的名稱：&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;//...&lt;/span&gt;
+&lt;span class=&quot;nl&quot;&gt;plugins&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ExtractTextPlugin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;app.css&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;大功告成啦！最後得到了 &lt;code class=&quot;highlighter-rouge&quot;&gt;dist/bundle.js&lt;/code&gt; 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;dist/app.css&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;summary&quot;&gt;Summary&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Webpack 主要功能就是幫你把資源打包成 JavaScript 模組。&lt;/li&gt;
+  &lt;li&gt;Webpack 打包時會處理相依性，像是 js 裡的 &lt;code class=&quot;highlighter-rouge&quot;&gt;require&lt;/code&gt; 和 CSS 裡的 &lt;code class=&quot;highlighter-rouge&quot;&gt;url&lt;/code&gt; 都會被處理。&lt;/li&gt;
+  &lt;li&gt;Webpack 藉由 &lt;em&gt;Loader&lt;/em&gt; 在打包時幫你對各種格式的資源做處理，像 Sass, ES6，圖片。&lt;/li&gt;
+  &lt;li&gt;Webpack 藉由 &lt;em&gt;Plugin&lt;/em&gt; 客制化一些功能，像是抽取出 CSS 資源。&lt;/li&gt;
+&lt;/ul&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Learning Less From Atom</title>
+   <link href="https://liuderchi.github.io/2017/03/08/learning-less-from-atom/"/>
+   <updated>2017-03-08T00:00:00+08:00</updated>
+   <id>https://liuderchi.github.io/2017/03/08/learning-less-from-atom</id>
+   <content type="html">&lt;h3 id=&quot;section&quot;&gt;前言&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://atom.io/&quot; title=&quot;atom&quot;&gt;Atom 編輯器&lt;/a&gt;的其中一個最大的特色就是 “Hackable”
+  讓使用者可以使用 Web 技術來客制化 Atom&lt;/p&gt;
+
+&lt;p&gt;而在編輯器外觀方面也不例外，Atom 使用 CSS 來客制化樣式
+  編輯器的佈景主題也是由許多的樣式表組成&lt;/p&gt;
+
+&lt;p&gt;然而隨著時間，在習慣的佈景主題中，
+  總是會有一些小地方想要依照自己的喜好調整。&lt;/p&gt;
+
+&lt;p&gt;今天要介紹的是使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;style.less&lt;/code&gt; – 官方提供的空白樣式表
+  作為輸入點，來修改現有的佈景主題&lt;/p&gt;
+
+&lt;p&gt;一方面分享自己喜愛的樣式調整，一方面也複習相關的 &lt;code class=&quot;highlighter-rouge&quot;&gt;scss&lt;/code&gt; 語法。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/liuderchi/dot-atom-files/blob/master/styles.less&quot; title=&quot;style.less&quot;&gt;我的 style.less 原始檔&lt;/a&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;less-import&quot;&gt;less import&lt;/h3&gt;
+
+&lt;p&gt;首先看到的是使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;@&lt;/code&gt; 符號作為輸入外部檔案或定義變數
+  這裡我定了一些喜歡的顏色和字型大小，讓這份樣式表更為語意化。&lt;/p&gt;
+
+&lt;div class=&quot;language-scss highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// atom built-in
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;@import&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;ui-variables&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;     
+&lt;span class=&quot;k&quot;&gt;@import&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;syntax-variables&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;@_lightGreen&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;rgba&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;59&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;255&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.85&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;@_greyGreen&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;hsl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;95&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;38&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;62&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;@_atomGreen&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;#5FB57D&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;@_treeViewFontSize&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;font-size&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;6px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// from ui-variables
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;tree-view&quot;&gt;Tree View&lt;/h3&gt;
+
+&lt;p&gt;首先客制化的是 tree-view ，Atom 用來顯示檔案的 side bar&lt;/p&gt;
+
+&lt;p&gt;改進一： 我覺得預設的字型太小了。所以套用了自訂的 &lt;code class=&quot;highlighter-rouge&quot;&gt;@_treeViewFontSize&lt;/code&gt;
+  改進二： 我希望滑鼠移到檔案圖示上時，可以有酷炫的放大效果，最好像蘋果電腦桌面那樣(遠望)。&lt;/p&gt;
+
+&lt;p&gt;有查到相關的文章，但是牽涉較多的計算與限制，所以目前只有先使用 css &lt;code class=&quot;highlighter-rouge&quot;&gt;transition&lt;/code&gt; 做。
+  這裡也有運用到了 less 的 &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;amp;&lt;/code&gt; 運算子，用來表示外部的選擇器，符合 DRY 精神。&lt;/p&gt;
+
+&lt;div class=&quot;language-scss highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;.tree-view&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// hover on item
+&lt;/span&gt;  &lt;span class=&quot;nl&quot;&gt;font-size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_treeViewFontSize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+  &lt;span class=&quot;c1&quot;&gt;// animation of file entry, folder entry
+&lt;/span&gt;  &lt;span class=&quot;nt&quot;&gt;li&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.file&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.header.list-item&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;transition&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;padding&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;.5s&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;font-size&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;.5s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// HOVER-OFF
+&lt;/span&gt;    &lt;span class=&quot;nl&quot;&gt;padding&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:hover&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;nl&quot;&gt;transition&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;padding&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1s&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;font-size&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;// HOVER-ON
+&lt;/span&gt;      &lt;span class=&quot;nl&quot;&gt;padding&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;15px&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+      &lt;span class=&quot;nl&quot;&gt;font-size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_treeViewFontSizeHovered&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;套用後的效果(請想像這是 hover 1.5 秒後的樣子)&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cloud.githubusercontent.com/assets/4994705/23910182/cc33b72a-0913-11e7-84d0-d52382509a4a.png&quot; alt=&quot;treeview01&quot; title=&quot;treeview01&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;find-and-replace&quot;&gt;Find and Replace&lt;/h3&gt;
+
+&lt;p&gt;Find and Replace 是搜尋檔案用的套件，
+  搜尋結果會以樹狀的方式顯示，右上角頁面會有按鈕可以展開或合併樹狀圖的節點。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cloud.githubusercontent.com/assets/4994705/23910186/d197f3e8-0913-11e7-9643-281e1ac895ba.png&quot; alt=&quot;find01&quot; title=&quot;find01&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;改進：覺得按鈕文字前方如果有圖示，就能夠更直覺的點選按鈕(對我真的常常會猶豫)。&lt;/p&gt;
+
+&lt;p&gt;遇到了一個挑戰：&lt;code class=&quot;highlighter-rouge&quot;&gt;button&lt;/code&gt; 沒有套 &lt;code class=&quot;highlighter-rouge&quot;&gt;class&lt;/code&gt; 屬性，一時無法選到正確的元素。
+  之後發現還好 CSS 有提供 &lt;code class=&quot;highlighter-rouge&quot;&gt;first-of-type&lt;/code&gt; 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;nth-of-type()&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;選擇器搭配使用了 &lt;code class=&quot;highlighter-rouge&quot;&gt;font-awesome&lt;/code&gt; 還是可以成功套用圖示&lt;/p&gt;
+
+&lt;div class=&quot;language-scss highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;.preview-header&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// search result summary
+&lt;/span&gt;  &lt;span class=&quot;nl&quot;&gt;font-size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_projFindResFontSizeSummary&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+  &lt;span class=&quot;nt&quot;&gt;button&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.btn&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:first-of-type&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// collapse all button
+&lt;/span&gt;    &lt;span class=&quot;nl&quot;&gt;font-size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_projFindResFontSizeMatchCount&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;before&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;  &lt;span class=&quot;nl&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;\f066\ &quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// fa-expand
+&lt;/span&gt;  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;button&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.btn&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:nth-of-type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// expand all button
+&lt;/span&gt;    &lt;span class=&quot;nl&quot;&gt;font-size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_projFindResFontSizeMatchCount&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;before&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;  &lt;span class=&quot;nl&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;\f065\ &quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// fa-compress
+&lt;/span&gt;  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;同時調整了一些字型大小後的結果：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cloud.githubusercontent.com/assets/4994705/23910189/d376fc9a-0913-11e7-89d5-ea3813a636bf.png&quot; alt=&quot;find02&quot; title=&quot;find02&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;檔案編碼&lt;/h3&gt;
+
+&lt;p&gt;狀態列中會有一個元素 &lt;code class=&quot;highlighter-rouge&quot;&gt;encoding-selector-status&lt;/code&gt; 顯示目前檔案的編碼，
+  我想要在其屬性 &lt;code class=&quot;highlighter-rouge&quot;&gt;data-encoding&lt;/code&gt; 不是 &lt;code class=&quot;highlighter-rouge&quot;&gt;utf8&lt;/code&gt; 的時候換成警告的顏色。&lt;/p&gt;
+
+&lt;div class=&quot;language-scss highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;status-bar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;encoding-selector-status&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:not&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;data-encoding&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;utf8&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;text-color-warning&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;運用了 &lt;code class=&quot;highlighter-rouge&quot;&gt;:not&lt;/code&gt; 選擇器之後，看起來變成這樣&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cloud.githubusercontent.com/assets/4994705/23910192/d6740a32-0913-11e7-95cd-bcfd9826f85c.png&quot; alt=&quot;statusbar01&quot; title=&quot;statusbar01&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;程式碼折疊&lt;/h3&gt;
+
+&lt;p&gt;Atom 提供了程式碼折疊的功能，讓你把不想要注意的程式碼暫時 “藏起來”。
+  折疊起來的部份變成了一個 &lt;code class=&quot;highlighter-rouge&quot;&gt;.fold-marker&lt;/code&gt;，看起來會是這樣。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cloud.githubusercontent.com/assets/4994705/23910200/d947f020-0913-11e7-9e55-bb77c435ab7e.png&quot; alt=&quot;fold01&quot; title=&quot;fold01&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;改進一：想要把這個 &lt;code class=&quot;highlighter-rouge&quot;&gt;span&lt;/code&gt; 換成顯眼的圖示，搭配顯眼的顏色，方便閱讀。&lt;/p&gt;
+
+&lt;p&gt;這裡使用了另一個 less 的功能 &lt;strong&gt;mixin&lt;/strong&gt;，讓你可以撰寫可重複使用的 “函數”
+  呼叫了 mixin 就會把該函數中的規則注入。你可以把常重複的選擇器包成 mixin，簡化代碼。&lt;/p&gt;
+
+&lt;p&gt;為了讓折疊後的樣式可以客制化，我提供了變數 &lt;code class=&quot;highlighter-rouge&quot;&gt;@content&lt;/code&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;@color&lt;/code&gt; 給 mixin&lt;/p&gt;
+
+&lt;div class=&quot;language-scss highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;._fold-marker-content&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(@&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// folded function code
+&lt;/span&gt;  &lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;after&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;font-size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;.25em&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;.fold-marker&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// folded code
+&lt;/span&gt;  &lt;span class=&quot;nc&quot;&gt;._fold-marker-content&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;\f141&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;text-color-success&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;輸入了 font-awesome 圖示後，變得真的更清楚了！&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cloud.githubusercontent.com/assets/4994705/23910203/dafa1f74-0913-11e7-899a-f37070f87b6c.png&quot; alt=&quot;fold02&quot; title=&quot;fold02&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;section-3&quot;&gt;結語&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;DIY 改 Atom 很好玩，一邊練習 less 一邊改進自己的開發環境。&lt;/li&gt;
+  &lt;li&gt;Atom 的討論區會有人&lt;a href=&quot;https://discuss.atom.io/t/share-your-stylesheet/21653&quot; title=&quot;share your style sheet&quot;&gt;分享自己的 style sheet&lt;/a&gt;，有時會去上面找靈感。&lt;/li&gt;
+  &lt;li&gt;有些元件實在是無法單純用 css 就能達到修改（沒有 class，元素屬性不會變動）
+    &lt;ul&gt;
+      &lt;li&gt;要用 DOM API 來完成&lt;/li&gt;
+      &lt;li&gt;還好 Atom 提供了 &lt;code class=&quot;highlighter-rouge&quot;&gt;init.coffee&lt;/code&gt; 作為另一個客制化的位置
+        &lt;ul&gt;
+          &lt;li&gt;可以讓外掛開發者以 &lt;code class=&quot;highlighter-rouge&quot;&gt;coffeescript&lt;/code&gt; 測試 Atom API&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;下次來分享自己的 &lt;code class=&quot;highlighter-rouge&quot;&gt;init.coffee&lt;/code&gt; 如何完成更多客制化&lt;/li&gt;
+&lt;/ul&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Basic D3 API to Manipulate DOM</title>
+   <link href="https://liuderchi.github.io/2017/03/07/basic-d3-api-to-manipulate-dom/"/>
+   <updated>2017-03-07T00:00:00+08:00</updated>
+   <id>https://liuderchi.github.io/2017/03/07/basic-d3-api-to-manipulate-dom</id>
+   <content type="html">&lt;h2 id=&quot;preface&quot;&gt;Preface&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;在網頁前端技術領域中，資料視覺化是一個重要的技術
+    &lt;ul&gt;
+      &lt;li&gt;而 &lt;a href=&quot;https://d3js.org/&quot; title=&quot;D3.js&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;D3.js&lt;/code&gt;&lt;/a&gt; 是非常有名的資料視覺化函式庫，GitHub 上有六萬顆星&lt;/li&gt;
+      &lt;li&gt;從官方網頁提供了&lt;a href=&quot;https://github.com/d3/d3/wiki/Gallery&quot; title=&quot;d3 examples&quot;&gt;大量的範例&lt;/a&gt;中，看出它功能強大&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;好奇 D3.js 的原理到底是什麼？程式碼寫起來感覺如何？
+    &lt;ul&gt;
+      &lt;li&gt;這篇文章提供了閱讀網路上資料的小小心得，希望能對於觀望 D3.js 的人能有所幫助
+        &lt;ol&gt;
+          &lt;li&gt;這篇 &lt;a href=&quot;http://www.oxxostudio.tw/articles/201411/svg-d3-01-data.html&quot; title=&quot;SVG D3.js - 淺談 D3.js 的資料處理&quot;&gt;SVG D3.js - 淺談 D3.js 的資料處理&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;官方版本 3.x 的 &lt;a href=&quot;https://github.com/d3/d3-3.x-api-reference/blob/master/Selections.md&quot; title=&quot;API 文件&quot;&gt;介紹 selection 的 API 文件&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;資料視覺化的 &lt;a href=&quot;http://blog.infographics.tw/2015/03/d3js-the-introduction/&quot; title=&quot;網頁視覺化利器 － D3.js 簡介&quot;&gt;網頁視覺化利器 － D3.js 簡介&lt;/a&gt;&lt;/li&gt;
+        &lt;/ol&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;intro-of-d3js&quot;&gt;Intro of D3.js&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;D3.js 是？
+    &lt;ul&gt;
+      &lt;li&gt;用 JavaScript 在瀏覽器上視覺化資料的函式庫&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;D3 要解決的問題是？
+    &lt;ul&gt;
+      &lt;li&gt;使用 HTML 元素來視覺化資料的手續繁雜
+        &lt;ul&gt;
+          &lt;li&gt;動手刻需要很多冗長的處理（遍歷陣列，產生新元素）&lt;/li&gt;
+          &lt;li&gt;用 &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;svg&amp;gt;&lt;/code&gt; 畫出一個圖形需要很多手續（定義座標，樣式）&lt;/li&gt;
+          &lt;li&gt;D3 可以包辦這些處理，節省開發者很多時間&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;換句話說，D3 希望讓資料能輕鬆的被用來 &lt;em&gt;建立&lt;/em&gt; 和 &lt;em&gt;連結&lt;/em&gt; HTML 元素&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;讓資料 &lt;em&gt;連結&lt;/em&gt; HTML 元素：包含圖表的 &lt;em&gt;樣式&lt;/em&gt;，舉個例子：
+    &lt;ul&gt;
+      &lt;li&gt;有個 JavaScript 陣列裝的是學生資料，有性別和年齡。&lt;/li&gt;
+      &lt;li&gt;圖表需求是：
+        &lt;ul&gt;
+          &lt;li&gt;我想要畫長條圖。（用 &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;svg&amp;gt;&lt;/code&gt; 或 &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;div&amp;gt;&lt;/code&gt; 畫長方形）&lt;/li&gt;
+          &lt;li&gt;男性用藍色，女性用紫色。（套用 css &lt;code class=&quot;highlighter-rouge&quot;&gt;background-color&lt;/code&gt;）&lt;/li&gt;
+          &lt;li&gt;年紀愈大，長條圖越長。（套用 css &lt;code class=&quot;highlighter-rouge&quot;&gt;width&lt;/code&gt;）&lt;/li&gt;
+          &lt;li&gt;每個長條圖標記學生姓名。（元素裏面要塞文字）&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;D3 能夠提供方便的介面來完成這些功能，讓程式碼比較好維護。&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;common-flow-of-drawing-using-d3js-api&quot;&gt;Common Flow of Drawing using D3.js API&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;網路上的文章中，常見的例子之一就是&lt;a href=&quot;http://www.oxxostudio.tw/articles/201411/svg-d3-01-data.html&quot; title=&quot;SVG D3.js - 淺談 D3.js 的資料處理&quot;&gt;將矩陣資料畫成直方圖&lt;/a&gt;
+    &lt;ul&gt;
+      &lt;li&gt;看了一些範例之後，&lt;/li&gt;
+      &lt;li&gt;整理了 D3 API 常見的流程，在這裡留下一些心得和紀錄&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;首先，畫圖的資料一定是 Array 但元素可以是 Array 或是物件，這裡取名為 &lt;code class=&quot;highlighter-rouge&quot;&gt;myArr&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;d3.select()&lt;/code&gt; 輸入 css selector 決定圖表的位置
+    &lt;ul&gt;
+      &lt;li&gt;回傳 &lt;code class=&quot;highlighter-rouge&quot;&gt;selection&lt;/code&gt;，供之後使用&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;selection&lt;/code&gt; 是個 array，裏面裝 array of elements，以及 parentNode 資訊
+        &lt;ul&gt;
+          &lt;li&gt;詳細的 &lt;a href=&quot;https://github.com/d3/d3-3.x-api-reference/blob/master/Selections.md&quot; title=&quot;API 文件&quot;&gt;selection 定義&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;selection.data(myArr[, key])&lt;/code&gt; 讓 &lt;code class=&quot;highlighter-rouge&quot;&gt;myArr&lt;/code&gt; 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;selection&lt;/code&gt; 接在一起
+    &lt;ul&gt;
+      &lt;li&gt;把 &lt;code class=&quot;highlighter-rouge&quot;&gt;myArr&lt;/code&gt; 資料放在 DOM Node 的屬性 &lt;code class=&quot;highlighter-rouge&quot;&gt;__data__&lt;/code&gt; 中&lt;/li&gt;
+      &lt;li&gt;回傳 &lt;em&gt;update-selection&lt;/em&gt;, 之後就可以呼叫 &lt;code class=&quot;highlighter-rouge&quot;&gt;.enter()&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;key&lt;/code&gt; 是個函式，可以客制化要連結的陣列元素的屬性&lt;/li&gt;
+      &lt;li&gt;如果圖表位置沒有子元素要先用 &lt;code class=&quot;highlighter-rouge&quot;&gt;.selectAll()&lt;/code&gt; 再呼叫 &lt;code class=&quot;highlighter-rouge&quot;&gt;.data()&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;selection.enter()&lt;/code&gt; 選擇 &lt;em&gt;沒有與 HTML 元素連結的資料&lt;/em&gt;
+    &lt;ul&gt;
+      &lt;li&gt;回傳 &lt;em&gt;enter-selection&lt;/em&gt;&lt;/li&gt;
+      &lt;li&gt;只有 enter-selection 才可以呼叫 &lt;code class=&quot;highlighter-rouge&quot;&gt;.append()&lt;/code&gt; 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;.insert()&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;selection.append()&lt;/code&gt; 對 &lt;em&gt;enter-selection&lt;/em&gt; 建立新 HTML 元素&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;對 &lt;em&gt;update-selection&lt;/em&gt; 呼叫 &lt;code class=&quot;highlighter-rouge&quot;&gt;.exit().remove()&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;選擇 &lt;em&gt;沒有和資料連結的 HTML 元素&lt;/em&gt; 並移除&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;https://github.com/d3/d3-3.x-api-reference/blob/master/Selections.md#exit&quot;&gt;官方文件解釋 &lt;code class=&quot;highlighter-rouge&quot;&gt;exit()&lt;/code&gt; 的用法&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;enter()&lt;/code&gt; 對比 &lt;code class=&quot;highlighter-rouge&quot;&gt;exit()&lt;/code&gt;
+        &lt;ul&gt;
+          &lt;li&gt;「沒有與 HTML 元素連結的資料」與「沒有和資料連結的 HTML 元素」&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;selection.text()&lt;/code&gt; 遍歷 &lt;em&gt;update-selection&lt;/em&gt; 為元素建立文字&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;selection.style()&lt;/code&gt; 遍歷 &lt;em&gt;update-selection&lt;/em&gt; 設定元素樣式&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;程式碼 API 風格是 method chaining，簡化的&lt;a href=&quot;https://jsfiddle.net/dom7twuv/5/&quot; title=&quot;Sample code&quot;&gt;範例程式碼 fiddle&lt;/a&gt;：&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;myArr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;John&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;m&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;18&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;Mary&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;f&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;Ivy&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;f&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;27&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;]]&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// name, gender, age&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;divSelection&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;d3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;select&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;body&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;                   &lt;span class=&quot;c1&quot;&gt;// 1.&lt;/span&gt;
+                     &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;selectAll&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;div&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+                     &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;myArr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;e&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;// 2.&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;divSelection&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;enter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;div&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;        &lt;span class=&quot;c1&quot;&gt;// 3. 4.&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;divSelection&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;exit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;remove&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;              &lt;span class=&quot;c1&quot;&gt;// 5.&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;divSelection&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;// 6.&lt;/span&gt;
+            &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;                      &lt;span class=&quot;c1&quot;&gt;// 7.&lt;/span&gt;
+              &lt;span class=&quot;na&quot;&gt;margin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;5px&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+              &lt;span class=&quot;s2&quot;&gt;&quot;background-color&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;m&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)?&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;#A9D0F5&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;#D0A9F5&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+              &lt;span class=&quot;na&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;px&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// calculate by age&lt;/span&gt;
+            &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;畫出來的圖：&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img style=&quot;display: block; margin: 0 auto&quot; src=&quot;https://cloud.githubusercontent.com/assets/4994705/23652719/ef6a028a-0364-11e7-8402-ef654661996b.png&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;summary&quot;&gt;Summary&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;d3 強大之處在於處理了資料與 HTML 元素的連結，省下非常多的開發時間。&lt;/li&gt;
+  &lt;li&gt;用一句話講完 &lt;code class=&quot;highlighter-rouge&quot;&gt;d3.js&lt;/code&gt; 基本範例的流程：
+    &lt;ul&gt;
+      &lt;li&gt;選擇了適當的位置(1.)，將該選擇與資料陣列連結在一起(2.)，產生對應數量的 HTML 元素(3.4.5.)，最後根據資料套用樣式於元素上(6.7.)。&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>How I Contribute To Atom From Scratch</title>
+   <link href="https://liuderchi.github.io/2017/02/19/how-i-contribute-to-atom-from-scratch/"/>
+   <updated>2017-02-19T00:00:00+08:00</updated>
+   <id>https://liuderchi.github.io/2017/02/19/how-i-contribute-to-atom-from-scratch</id>
+   <content type="html">&lt;h3 id=&quot;abstract&quot;&gt;Abstract&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;This article is more like a note about &lt;em&gt;how I contribute&lt;/em&gt; to popular open source software – Atom – from little&lt;/li&gt;
+  &lt;li&gt;I would try to make it easy to understand&lt;/li&gt;
+  &lt;li&gt;I want to encourage those passionate with open source but don’t know how to start.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;starting-as-an-user&quot;&gt;Starting as an User&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Time is always the most valuable for developer so I like to discovering productivity tools to save time
+    &lt;ul&gt;
+      &lt;li&gt;what do i need in ATOM
+        &lt;ul&gt;
+          &lt;li&gt;code: auto-complete, snippet, linting…&lt;/li&gt;
+          &lt;li&gt;document: markdown utils/highlighting, text folding like what workflowy offers&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;I like to discover packages in Atom pages
+    &lt;ul&gt;
+      &lt;li&gt;try to describe my needs and convert them into key words&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Atom encourage user to discover it’s power and customize it&lt;/li&gt;
+  &lt;li&gt;&lt;em&gt;&lt;a href=&quot;https://flight-manual.atom.io/&quot;&gt;flight-manual&lt;/a&gt;&lt;/em&gt; is a good starting point
+    &lt;ul&gt;
+      &lt;li&gt;discover more functionalities to make your life easier&lt;/li&gt;
+      &lt;li&gt;tutorial about building hello-world package from boilerplate
+        &lt;ul&gt;
+          &lt;li&gt;i took some time to go through it (fm version 1.0)&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;play-around-with-api&quot;&gt;Play around with API&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;most fun part: try to play around the rich APIs
+    &lt;ul&gt;
+      &lt;li&gt;e.g. insert template with date in markdown, move cursor to some place you want&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Atom provide a playful interface — &lt;code class=&quot;highlighter-rouge&quot;&gt;init.coffee&lt;/code&gt; so we can play with API with ease
+    &lt;ul&gt;
+      &lt;li&gt;you can implement custom command on the fly&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;I let my &lt;code class=&quot;highlighter-rouge&quot;&gt;init.coffee&lt;/code&gt; start to grow large
+    &lt;ul&gt;
+      &lt;li&gt;plugin of text manipulation in markdown&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;a good starting point to satisfy what I need to enhance productivity&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;discovering-issues&quot;&gt;Discovering Issues&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;now I can try to enhance my ux/productivity
+    &lt;ul&gt;
+      &lt;li&gt;by discovering Atom built-in (config, hotkey, snippet, stylesheet)&lt;/li&gt;
+      &lt;li&gt;by discovering 3rd package&lt;/li&gt;
+      &lt;li&gt;by customizing my own command in &lt;code class=&quot;highlighter-rouge&quot;&gt;init.coffee&lt;/code&gt; with help of API doc&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;but sometimes we are still unsatisfied
+    &lt;ul&gt;
+      &lt;li&gt;I want to open file without toggling tree view
+        &lt;ul&gt;
+          &lt;li&gt;discover it on issue, join discussion&lt;/li&gt;
+          &lt;li&gt;looking into source, found that core function is prepared&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;try to &lt;em&gt;reuse&lt;/em&gt; functions from source
+    &lt;ul&gt;
+      &lt;li&gt;POC in &lt;code class=&quot;highlighter-rouge&quot;&gt;init.coffee&lt;/code&gt;
+        &lt;ul&gt;
+          &lt;li&gt;feedback on issue page&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;sending-pull-request&quot;&gt;Sending Pull Request&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;I’ve found that I can start to contribute!
+    &lt;ul&gt;
+      &lt;li&gt;just require some refactoring and reuse some inner help function&lt;/li&gt;
+      &lt;li&gt;discuss on issue page&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;prepare dev env/tools
+    &lt;ul&gt;
+      &lt;li&gt;fork repo, sync it with upstream&lt;/li&gt;
+      &lt;li&gt;link,&lt;/li&gt;
+      &lt;li&gt;CoffeeScript linter&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;wrap some code and then commits
+    &lt;ul&gt;
+      &lt;li&gt;learn and refactor Coffee Script
+        &lt;ul&gt;
+          &lt;li&gt;takes time to understand it&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;So happy it works after some iteration!&lt;/li&gt;
+      &lt;li&gt;refactoring commits message
+        &lt;ul&gt;
+          &lt;li&gt;commits often, with little changes&lt;/li&gt;
+          &lt;li&gt;commits message style guide&lt;/li&gt;
+          &lt;li&gt;use interactive rebase to get commits tidy&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;create PR for reviewing
+    &lt;ul&gt;
+      &lt;li&gt;fixing typo/syntax by comments/reviews&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;create spec is hard but I feel like I’m close to it
+    &lt;ul&gt;
+      &lt;li&gt;learning from reading other’s code&lt;/li&gt;
+      &lt;li&gt;learning &lt;code class=&quot;highlighter-rouge&quot;&gt;jasmine&lt;/code&gt;, BDD&lt;/li&gt;
+      &lt;li&gt;learning &lt;code class=&quot;highlighter-rouge&quot;&gt;Travis CI&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;interact with reviewer
+    &lt;ul&gt;
+      &lt;li&gt;don’t be afraid to discuss/notify with reviewer
+        &lt;ul&gt;
+          &lt;li&gt;they are busy so try to keep in contact with them&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;so happy to see it merged then go in beta/stable&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;starts from one open source you like to use
+    &lt;ul&gt;
+      &lt;li&gt;better if you use it every day&lt;/li&gt;
+      &lt;li&gt;better if it has friendly document
+        &lt;ul&gt;
+          &lt;li&gt;since I can easily play with it so I can keep follow on it&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;better if it has supportive community&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;watch and learn from open source
+    &lt;ul&gt;
+      &lt;li&gt;how to write spec&lt;/li&gt;
+      &lt;li&gt;how to contribute to Issue&lt;/li&gt;
+      &lt;li&gt;how to send PR&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;yes you can contribute, Atom prepares simple issue tag for anyone in interest
+    &lt;ul&gt;
+      &lt;li&gt;tips on issue query
+        &lt;ul&gt;
+          &lt;li&gt;&lt;em&gt;help-wanted&lt;/em&gt;&lt;/li&gt;
+          &lt;li&gt;sort by most comments&lt;/li&gt;
+          &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;q=is%3Aopen+is%3Aissue+label%3Ahelp-wanted+sort%3Acomments-desc&lt;/code&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;core packages require many helps (issue and PR)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>How I Run Community Project On Github</title>
+   <link href="https://liuderchi.github.io/2017/02/14/how-i-run-community-project-on-github/"/>
+   <updated>2017-02-14T00:00:00+08:00</updated>
+   <id>https://liuderchi.github.io/2017/02/14/how-i-run-community-project-on-github</id>
+   <content type="html">&lt;h3 id=&quot;motivation-before-repo-init&quot;&gt;motivation, before repo init&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;as a user, hope Atom can be better, reach more people around the globe&lt;/li&gt;
+  &lt;li&gt;i want to have experience running an open source project with community contribution&lt;/li&gt;
+  &lt;li&gt;Somebody is doing but it can be better
+    &lt;ul&gt;
+      &lt;li&gt;current i18n package supports only single language&lt;/li&gt;
+      &lt;li&gt;can we create a package loading content from different source?&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Somebody need it
+    &lt;ul&gt;
+      &lt;li&gt;i18n of several language is missing i18n on &lt;a href=&quot;https://github.com/atom/atom/issues/3103&quot;&gt;issue&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;also there are some volunteer for i18n&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;tech-aspect&quot;&gt;Tech Aspect&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;current i18n project
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;atom-japanese-menu&lt;/code&gt;
+        &lt;ul&gt;
+          &lt;li&gt;base&lt;/li&gt;
+          &lt;li&gt;with 80% content extracted from code&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;atom-cht-menu&lt;/code&gt;
+        &lt;ul&gt;
+          &lt;li&gt;base on &lt;code class=&quot;highlighter-rouge&quot;&gt;atom-japanese-menu&lt;/code&gt;&lt;/li&gt;
+          &lt;li&gt;more complete coverage of i18n&lt;/li&gt;
+          &lt;li&gt;code is more complex&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;both not complicated but with one work to do
+        &lt;ul&gt;
+          &lt;li&gt;extracted content from code&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;i fork &lt;code class=&quot;highlighter-rouge&quot;&gt;atom-japanese-menu&lt;/code&gt; and start to extract content from code
+    &lt;ul&gt;
+      &lt;li&gt;discover how UI dom is structured&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;features i want to add
+    &lt;ul&gt;
+      &lt;li&gt;common data structure for different lang&lt;/li&gt;
+      &lt;li&gt;translate more UI items&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;maintenance-aspect&quot;&gt;Maintenance Aspect&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;From TODO to Github &lt;em&gt;Projects&lt;/em&gt;
+    &lt;ul&gt;
+      &lt;li&gt;former way: use plain text &lt;code class=&quot;highlighter-rouge&quot;&gt;TODO.md&lt;/code&gt; to create TODO List&lt;/li&gt;
+      &lt;li&gt;issue is always a good way to manage &lt;em&gt;actions&lt;/em&gt;&lt;/li&gt;
+      &lt;li&gt;Why use &lt;em&gt;Projects&lt;/em&gt;
+        &lt;ul&gt;
+          &lt;li&gt;keeping update &lt;code class=&quot;highlighter-rouge&quot;&gt;TODO.md&lt;/code&gt; is distracting
+            &lt;ul&gt;
+              &lt;li&gt;we need something that we can edit see it changed on the fly&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+          &lt;li&gt;there are some tiny &lt;em&gt;chores&lt;/em&gt; no need to add issue number on it
+            &lt;ul&gt;
+              &lt;li&gt;e.g. refactor some function, add blabla to README.md&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+          &lt;li&gt;there are some abstract ideas need to be noted&lt;/li&gt;
+          &lt;li&gt;We need a higher view to manage the project
+            &lt;ul&gt;
+              &lt;li&gt;like what trello did&lt;/li&gt;
+              &lt;li&gt;practice kanban?&lt;/li&gt;
+              &lt;li&gt;You can reference issue in kanban&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;add CI hook to repo to save time reviewing commit&lt;/li&gt;
+  &lt;li&gt;issues
+    &lt;ul&gt;
+      &lt;li&gt;use label to classify issues&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Travis CI may &lt;em&gt;Block Publishing&lt;/em&gt; using apm
+    &lt;ul&gt;
+      &lt;li&gt;github config: disable all options about &lt;em&gt;Include administrators&lt;/em&gt;&lt;/li&gt;
+      &lt;li&gt;safer way to do
+        &lt;ul&gt;
+          &lt;li&gt;github config: disable &lt;em&gt;Protect this branch&lt;/em&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://sonpham.me/posts/republish-an-atom-package-version&quot;&gt;unpublish package&lt;/a&gt;
+    &lt;ul&gt;
+      &lt;li&gt;delete commit on local/remote
+        &lt;ul&gt;
+          &lt;li&gt;git reset –hard HEAD~&lt;/li&gt;
+          &lt;li&gt;git push -f origin master&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;delete tag on local/remote
+        &lt;ul&gt;
+          &lt;li&gt;git tag -d v0.1.3&lt;/li&gt;
+          &lt;li&gt;git push origin :refs/tags/v0.1.3&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;em&gt;IMPORTANT&lt;/em&gt; clear binding with apm registry
+        &lt;ul&gt;
+          &lt;li&gt;apm unpublish spacegray-light-neue-ui@0.1.3  # Note 0.1.3 not v0.1.3&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;em&gt;OPTIONAL&lt;/em&gt; clear apm cache
+        &lt;ul&gt;
+          &lt;li&gt;rm -r ~/.atom/.apm&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;apm publish patch&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;public-relation-aspect&quot;&gt;Public Relation Aspect&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;for volunteer
+    &lt;ul&gt;
+      &lt;li&gt;how to find them?
+        &lt;ul&gt;
+          &lt;li&gt;atom discussion, issue page&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;prepare &lt;code class=&quot;highlighter-rouge&quot;&gt;CONTRIBUTING.md&lt;/code&gt; guide
+        &lt;ul&gt;
+          &lt;li&gt;refine instruction to let anyone can understand it&lt;/li&gt;
+          &lt;li&gt;simplify the process of translation
+            &lt;ul&gt;
+              &lt;li&gt;prepare template&lt;/li&gt;
+              &lt;li&gt;use prefix to notice what to translate&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;in the PR discussion
+        &lt;ul&gt;
+          &lt;li&gt;thank them&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;README.md&lt;/code&gt;
+        &lt;ul&gt;
+          &lt;li&gt;add volunteer name&lt;/li&gt;
+          &lt;li&gt;add link to issue to direct volunteer to issue page of their own locale&lt;/li&gt;
+          &lt;li&gt;add link to create new issue for new locale&lt;/li&gt;
+          &lt;li&gt;think of it as landing page&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;for user
+    &lt;ul&gt;
+      &lt;li&gt;promote your package in Atom discussion&lt;/li&gt;
+      &lt;li&gt;get feedback from user
+        &lt;ul&gt;
+          &lt;li&gt;add reload prompt notice when switching language&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+</content>
+ </entry>
+ 
+
+</feed>

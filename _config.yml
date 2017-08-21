@@ -1,26 +1,85 @@
+# Gems
+gems:
+  - jekyll-paginate
+  - jekyll-gist
+  - redcarpet
+
 # Dependencies
-markdown:         redcarpet
-highlighter:      pygments
+markdown:         kramdown
+highlighter:      rouge  # pygments
 
 # Permalinks
 permalink:        pretty
-relative_permalinks: true
+# relative_permalinks: true
 
 # Setup
-title:            Hyde
-tagline:          'A Jekyll theme'
-description:      'A brazen two-column <a href="http://jekyllrb.com" target="_blank">Jekyll</a> theme that pairs a prominent sidebar with uncomplicated content. Made by <a href="https://twitter.com/mdo" target="_blank">@mdo</a>.'
-url:              http://hyde.getpoole.com
-baseurl:          /
+title:            Te-Chi's Dev Note
+tagline:          A Web Dev's Playground
+description:      Web dev learning notes and reviews. Sharing my discovery of web tech and open source.
+url:              https://liuderchi.github.io
+baseurl:          /blog  #/
 
 author:
-  name:           'Mark Otto'
-  url:            https://twitter.com/mdo
+  name:           'Te-Chi Liu'
+  githubURL:      https://github.com/liuderchi
 
 paginate:         5
 
-# Custom vars
-version:          2.1.0
-
-github:
-  repo:           https://github.com/poole/hyde
+projects:
+  - name: atom-i18n
+    tags:
+      - CoffeeScript
+      - NodeJS
+    url: https://atom.io/packages/atom-i18n
+    description: Internationalization package for atom editor.
+        Developed with CoffeeScript, NodeJS.
+        Translation made by the community.
+        Use TDD framework Mocha to validate contribution format.
+    imgSrc: https://i.github-camo.com/e702ec47a3d8e4c1e55e06e1a01266730004b61b/68747470733a2f2f636c6f75642e67697468756275736572636f6e74656e742e636f6d2f6173736574732f343939343730352f32333635323239382f35313233663239342d303336332d313165372d386638662d6539633833663139373130652e706e67
+    flexDir: row
+  - name: markdownBin
+    tags:
+      - Meteor
+      - React
+      - MongoDB
+    url: https://github.com/liuderchi/markdownBin
+    description: Simple markdown collaborative editor powered by Meteor, React and MongoDB.
+        Utilizing Meteor Method to achieve communication between pages.
+        Use accounts-ui and accounts-password as login system.
+    imgSrc: https://cloud.githubusercontent.com/assets/4994705/26295144/fae0fcf0-3efa-11e7-8076-41001bb8968d.png
+    flexDir: row-reverse
+  - name: atom/tree-view
+    tags:
+      - CoffeeScript
+      - Jasmine
+    url: https://github.com/atom/tree-view/pull/881
+    description: Contribute PR to Atom core package tree-view by implementing
+        'open file in file manager in your native os'.
+        Adding corresponding Jasmine spec to enhance the project.
+        This contribution is merged into master in atom version 1.12.
+    imgSrc: https://camo.githubusercontent.com/ebfca14cdb5546d8a670262b79bf995da45106af/68747470733a2f2f662e636c6f75642e6769746875622e636f6d2f6173736574732f3637313337382f323234313933322f36643963666163652d396365622d313165332d393032362d3331643530313164383839642e706e67
+    flexDir: row
+  - name: react-redux-weather-map
+    tags:
+      - React
+      - Redux
+      - redux-promise
+      - redux-sparkline
+    url: https://github.com/liuderchi/light-react-redux-weather-map
+    description: Simple react redux app using external weather API.
+        Utilizing redux-promise to handle promise in action payload.
+        Visualizing data using redux-sparkline
+        Injecting Google Map API into component.
+    imgSrc: https://cloud.githubusercontent.com/assets/4994705/26275925/980eeb08-3d9e-11e7-9ad1-b7929e7d1984.png
+    flexDir: row-reverse
+  - name: Conference Organizer
+    tags:
+      - Python
+      - Google-Cloud-Platform
+      - AngularJS
+    url: https://github.com/liuderchi/fsnd_P4_Conference_Org
+    description: An conference organizer app to help you schedule your conferences.
+        Server is deployed on Google Cloud Platform using and implemented by Python.
+        This project is part of Udacity's Full Stack Nanodegree projects.
+    imgSrc: https://cloud.githubusercontent.com/assets/4994705/26309672/6fe3befe-3f30-11e7-9072-b222db382652.png
+    flexDir: row-reverse

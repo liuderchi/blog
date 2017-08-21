@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Flexbox Learning Note And Reviews &middot; Te-Chi's Dev Note
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"></script>
+  <!-- <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"></script> -->
+  <link rel="stylesheet" href="/blog/public/css/bootstrap-custom.css">
+  <link rel="stylesheet" href="/blog/public/css/poole.css">
+  <link rel="stylesheet" href="/blog/public/css/syntax.css">
+  <link rel="stylesheet" href="/blog/public/css/hyde.css">
+  <link rel="stylesheet" href="/blog/public/css/custom.css">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/blog/public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="/blog/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  <!-- JS -->
+  <!-- MathJax -->
+  <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <!-- toc.js -->
+  <script type="text/javascript" src="/blog/public/js/toc.js"></script>
+  <script type="text/javascript" src="/blog/public/js/app.js"></script>
+
+  <!-- Google Analytics -->
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-104892103-1', 'auto');
+  ga('send', 'pageview');
+  </script>
+
+</head>
+
+
+  <body class="theme-base-0a">
+
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/blog/">
+          Te-Chi's Dev Note
+        </a>
+      </h1>
+      <p class="lead">Web dev learning notes and reviews. Sharing my discovery of web tech and open source.</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="/blog/">Home</a>
+      <a class="sidebar-nav-item active" href="/blog/archives">Archives</a>
+      <a class="sidebar-nav-item active" href="/blog/projects">Projects</a>
+
+      
+
+      
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/blog/about/">About</a>
+          
+        
+      
+        
+          
+        
+      
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+
+      <span class="sidebar-nav-item">
+        <ul class="list-inline text-center">
+          
+          <li>
+            <a href="https://github.com/liuderchi" target="_blank">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-github fa-stack-1x"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+      </span>
+
+    </nav>
+
+    <p><small>&copy; 2017 | Te-Chi's Dev Note | All rights reserved.</small></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="post">
+  <h1 class="post-title">Flexbox Learning Note And Reviews</h1>
+  <span class="post-date tags">
+    27 Apr 2017
+    <i class="fa fa-tags" aria-hidden="true"></i>
+    
+      <a class="tag-wrapper"
+        href="/blog/tags/css" rel="tooltip"
+        title="View posts tagged with &quot;css&quot;">
+        <span class="tags">css</span></a>&nbsp;
+    
+      <a class="tag-wrapper"
+        href="/blog/tags/css3" rel="tooltip"
+        title="View posts tagged with &quot;css3&quot;">
+        <span class="tags">css3</span></a>&nbsp;
+    
+      <a class="tag-wrapper"
+        href="/blog/tags/flexbox" rel="tooltip"
+        title="View posts tagged with &quot;flexbox&quot;">
+        <span class="tags">flexbox</span></a>&nbsp;
+    
+  </span>
+  <h3 id="abstract">Abstract</h3>
+
+<ul>
+  <li>簡單的紀錄學習 Flexbox 的心得，還有一些 Flexbox 的小套路</li>
+  <li>我學習的課程資源是 Udemy 的 <a href="https://www.udemy.com/flexbox-tutorial/" title="course link">The Complete Flexbox Tutorial: Learn CSS3 Flexbox in 2017</a></li>
+  <li>這篇文章適合已經了解 flexbox 基本用法的人閱讀，並非從頭開始介紹 flexbox 屬性有什麼效果</li>
+</ul>
+
+<h3 id="what-to-solve">What to solve?</h3>
+
+<ul>
+  <li>簡單的說，就是讓 “排版” 更方便
+    <ul>
+      <li>比方說購物網站的商品列表，我可能想要置中排列，或是分散的排列</li>
+      <li>這些需求使用可以使用一些 CSS 框架完成，例如 bootstrap 的 <a href="https://v4-alpha.getbootstrap.com/layout/grid/" title="bootstrap grid">grid</a></li>
+      <li>現在 CSS3 的 flexbox 也提供了同樣的功能，從某些角度來說使用起來可能更簡便</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="flexbox-katas">flexbox katas</h3>
+
+<ul>
+  <li>flex 屬性的分類：可以從對象來看，分為：父元素（container），以及子元素（item）
+    <ul>
+      <li>排版的對象就是子元素，只是 flexbox 屬性會下在父元素或子元素，均有可能</li>
+    </ul>
+  </li>
+  <li>對容器下 flexbox 的基本流程
+    <ol>
+      <li><code class="highlighter-rouge">display:flex</code></li>
+      <li>下 <code class="highlighter-rouge">flex-direction</code> 決定主軸方向
+        <ul>
+          <li><em>row</em>, <em>column</em>, <em>column-reverse</em></li>
+        </ul>
+      </li>
+      <li>下 <code class="highlighter-rouge">justify-content</code> 將元素作軸向調整間距 (main-axis)
+        <ul>
+          <li><em>flex-start</em>, <em>space-between</em>…</li>
+        </ul>
+      </li>
+      <li>下 <code class="highlighter-rouge">align-item</code> 對元素做垂直方向移動或伸展 (cross-axis 方向)
+        <ul>
+          <li><em>stretch</em>, <em>baseline</em>, <em>flex-start</em>, <em>center</em>…</li>
+        </ul>
+      </li>
+      <li>下 <code class="highlighter-rouge">flex-wrap</code> 折行，處理主軸的元素 overflow
+        <ul>
+          <li><em>nowrap</em>, <em>wrap</em>, <em>wrap-reverse</em></li>
+          <li><em>NOTE</em> 2. 和 5. 可以用簡短表示法 <code class="highlighter-rouge">flex-flow: row nowrap</code></li>
+        </ul>
+      </li>
+      <li>下 <code class="highlighter-rouge">align-content</code>，調整折行後元素之間的間隔
+        <ul>
+          <li><em>flex-start</em>, <em>space-between</em>…</li>
+        </ul>
+      </li>
+    </ol>
+  </li>
+  <li>對子元素下 flex 的使用情境
+    <ul>
+      <li><code class="highlighter-rouge">flex: [flex-grow] [flex-shrink] [flex-basis]</code>
+        <ul>
+          <li><code class="highlighter-rouge">flex-grow</code> 講的是如果容器有多餘空間，如何瓜分它（膨脹量的比例值）</li>
+          <li><code class="highlighter-rouge">flex-shrink</code> 講的是如果容器空間不足，怎麼壓縮子元素（壓縮量的比例值）</li>
+          <li><code class="highlighter-rouge">flex-basis</code> 講的是依據 <code class="highlighter-rouge">flex-direction</code> 設定的方向設定子元素尺寸</li>
+        </ul>
+      </li>
+      <li>子元素的尺寸計算流程
+        <ol>
+          <li>依據 flex-basis 算出基本尺寸</li>
+          <li>考慮有無 a.容器空間有多餘 b.容器空間不夠
+            <ul>
+              <li>如果有，計算對應的膨脹或壓縮</li>
+            </ul>
+          </li>
+          <li>將膨脹或壓縮量加到基本尺寸上</li>
+        </ol>
+      </li>
+      <li>如果要更動少數幾個子元素的順序，下 <code class="highlighter-rouge">order</code></li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="use-cases">Use cases</h3>
+
+<ul>
+  <li>模擬 bootstrap grid 的排版：
+    <ul>
+      <li>對子元素下 <code class="highlighter-rouge">flex: 1</code></li>
+      <li>對特定想要加強寬度的子元素修改 <code class="highlighter-rouge">flex-grow</code>
+        <ul>
+          <li>例如 <code class="highlighter-rouge">flex-grow: 3</code></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="https://cloud.githubusercontent.com/assets/4994705/25486849/02594416-2b95-11e7-9c3c-c1d37e5410b1.png" alt="demo-flexbox-grid" /></p>
+
+<h3 id="summary">Summary</h3>
+
+<ul>
+  <li>CSS3 的 flexbox 提供了方便的排版功能，也可以模擬 bootstrap grid 達到 responsive</li>
+</ul>
+
+
+</div>
+<div id="toc"></div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/blog/2017/03/24/dev-note-for-promise/">
+            Dev Note for Promise |
+            <small>24 Mar 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/blog/2017/03/22/how-underscore-extends-object/">
+            How Underscore Extends Object |
+            <small>22 Mar 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/blog/2017/03/16/learning-webpack-from-scratch/">
+            Learning Webpack from Scratch |
+            <small>16 Mar 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+      
+
+<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = '//techidevnote.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+    </div>
+
+  </body>
+</html>

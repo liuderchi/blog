@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Learning Webpack from Scratch &middot; Te-Chi's Dev Note
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"></script>
+  <!-- <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"></script> -->
+  <link rel="stylesheet" href="/blog/public/css/bootstrap-custom.css">
+  <link rel="stylesheet" href="/blog/public/css/poole.css">
+  <link rel="stylesheet" href="/blog/public/css/syntax.css">
+  <link rel="stylesheet" href="/blog/public/css/hyde.css">
+  <link rel="stylesheet" href="/blog/public/css/custom.css">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/blog/public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="/blog/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  <!-- JS -->
+  <!-- MathJax -->
+  <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <!-- toc.js -->
+  <script type="text/javascript" src="/blog/public/js/toc.js"></script>
+  <script type="text/javascript" src="/blog/public/js/app.js"></script>
+
+  <!-- Google Analytics -->
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-104892103-1', 'auto');
+  ga('send', 'pageview');
+  </script>
+
+</head>
+
+
+  <body class="theme-base-0a">
+
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/blog/">
+          Te-Chi's Dev Note
+        </a>
+      </h1>
+      <p class="lead">Web dev learning notes and reviews. Sharing my discovery of web tech and open source.</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="/blog/">Home</a>
+      <a class="sidebar-nav-item active" href="/blog/archives">Archives</a>
+      <a class="sidebar-nav-item active" href="/blog/projects">Projects</a>
+
+      
+
+      
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/blog/about/">About</a>
+          
+        
+      
+        
+          
+        
+      
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+
+      <span class="sidebar-nav-item">
+        <ul class="list-inline text-center">
+          
+          <li>
+            <a href="https://github.com/liuderchi" target="_blank">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-github fa-stack-1x"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+      </span>
+
+    </nav>
+
+    <p><small>&copy; 2017 | Te-Chi's Dev Note | All rights reserved.</small></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="post">
+  <h1 class="post-title">Learning Webpack from Scratch</h1>
+  <span class="post-date tags">
+    16 Mar 2017
+    <i class="fa fa-tags" aria-hidden="true"></i>
+    
+      <a class="tag-wrapper"
+        href="/blog/tags/webpack" rel="tooltip"
+        title="View posts tagged with &quot;webpack&quot;">
+        <span class="tags">webpack</span></a>&nbsp;
+    
+      <a class="tag-wrapper"
+        href="/blog/tags/note" rel="tooltip"
+        title="View posts tagged with &quot;note&quot;">
+        <span class="tags">note</span></a>&nbsp;
+    
+      <a class="tag-wrapper"
+        href="/blog/tags/review" rel="tooltip"
+        title="View posts tagged with &quot;review&quot;">
+        <span class="tags">review</span></a>&nbsp;
+    
+  </span>
+  <hr />
+
+<h2 id="abstract">Abstract</h2>
+
+<p>在網路上逛到了 <a href="https://laracasts.com/series/webpack-for-everyone" title="course link">Webpack for everyone</a> 這個線上課程。</p>
+
+<p>正好對於 Webpack 不太熟悉，加上今年 Webpack 剛出了穩定的 2.2.0 版本。
+  於是想藉由這個機會，從這個簡短的課程快速了解 Webpack ，以及常見的使用情境。</p>
+
+<p>這篇文章會以初學者的角度，紀錄這門課程的一些心得。</p>
+
+<hr />
+
+<h2 id="whats-webpack">What’s Webpack?</h2>
+
+<p>根據從官網的 README ，
+  Webpack 就是一個 <em>把網頁資源（以 JavaScript 為主）打包為 Module 的工具</em> 。</p>
+
+<p>這樣做的好處是，傳輸的檔案數量減少了，可以減少伺服器負荷。
+  另一方面包裝成模組也能讓程式碼重複利用。</p>
+
+<p>Webpack 重要的功能就是打包時處理各資源之間複雜的 <em>相依性</em>。</p>
+
+<p>而在打包的過程中，Webpack 可以引入很多外掛，
+  例如：壓縮 JavaScript，或是處理 Sass，壓縮圖片等。</p>
+
+<p>接著就讓我們跟著課程來紀錄學到的技巧吧！</p>
+
+<hr />
+
+<h2 id="lec-1-compile">Lec 1: Compile</h2>
+
+<p>一開始不免俗的要先建立環境，做個像是 Hello World 般的打包測試。</p>
+
+<p>a. 建立 <code class="highlighter-rouge">webpack-learning</code> 資料夾，當中建立 <code class="highlighter-rouge">src</code> 作為打包的資料來源。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>`mkdir webpack-learning &amp;&amp; cd webpack-learning; mkdir src`
+</code></pre>
+</div>
+
+<p>b. 建立一個打包來源 <code class="highlighter-rouge">main.js</code>，撰寫一行程式碼。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>`echo "alert('hello world')" &gt; src/main.js`
+</code></pre>
+</div>
+
+<p>c. 由 npm 作為開發專案環境及下載 Webpack 工具。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>`npm init &amp;&amp; npm install webpack --save-dev`
+</code></pre>
+</div>
+
+<p>d. 可以開始打包囉，工具放在 <code class="highlighter-rouge">node_modules/.bin/webpack</code></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>`./node_modules/.bin/webpack src/main.js dist/bundle.js`
+</code></pre>
+</div>
+
+<p>可以看出打包產生了 <code class="highlighter-rouge">bundle.js</code> 放在 <code class="highlighter-rouge">dist</code> 之下，
+  而這個指令也可以搭配 <code class="highlighter-rouge">--watch</code> 選項來監控來源檔案的變化以自動更新打包。</p>
+
+<p>最後，我們可以從 bundle.js 中搜尋到
+  <code class="highlighter-rouge">main.js</code> 中所寫的程式碼，確認 <code class="highlighter-rouge">bundle.js</code> 真的包含來源的程式碼。</p>
+
+<hr />
+
+<h2 id="lec-2-compile-with-webpackconfigjs">Lec 2: compile with webpack.config.js</h2>
+<p>而一般來說打包牽涉的檔案很多，不方便用一行一行指令完成，
+  所以接著介紹如何使用一般的設定檔來設定 Webpack，
+  建立模組 <code class="highlighter-rouge">webpack.config.js</code>，打包時會參考這個模組。</p>
+
+<p>模組的輸出（export）會包含來源以及目標，之後還會加入規則（rule）。
+  這就是打包流程的核心所在。</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// webpack.config.js</span>
+<span class="kr">const</span> <span class="nx">webpack</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'webpack'</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'path'</span><span class="p">);</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">entry</span><span class="p">:</span> <span class="nx">path</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="s1">'src'</span><span class="p">,</span> <span class="s1">'main.js'</span><span class="p">),</span> <span class="c1">// abs path</span>
+  <span class="na">output</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">path</span><span class="p">:</span> <span class="nx">path</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="s1">'dist'</span><span class="p">),</span> <span class="c1">// abs path</span>
+    <span class="na">filename</span><span class="p">:</span> <span class="s1">'bundle.js'</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+</code></pre>
+</div>
+
+<hr />
+
+<h2 id="lec-3-modules-are-simply-files">Lec 3: Modules Are Simply Files</h2>
+<p>這堂課主要是在說
+  如果來源的 <code class="highlighter-rouge">main.js</code> 如果有 import 其他模組，
+  Webpack 也會一並將該模組帶入處理，</p>
+
+<p>可以從 <code class="highlighter-rouge">bundle.js</code> 看到所引入的模組的程式碼。</p>
+
+<p>例外講者另外介紹了 Node 模組與 ES6 模組的語法差異。
+  兩者引入模組與輸出模組使用了不同的語法。
+  而 Webpack 對兩者都可以支援。</p>
+
+<hr />
+
+<h2 id="lec-4-loaders-are-transformers">* Lec 4: Loaders Are Transformers</h2>
+<p>這堂課介紹了兩個核心觀念：<code class="highlighter-rouge">Loader</code> 和 <code class="highlighter-rouge">rule</code></p>
+
+<p>首先介紹 <code class="highlighter-rouge">Loader</code>，功能是讓 JavaScript 以外的檔案也能夠被處理，打包成模組。
+  有了各種 <code class="highlighter-rouge">Loader</code> 我們就可以打包其他資源，像是圖片，CSS 等等。</p>
+
+<p>接著使用 <code class="highlighter-rouge">npm install css-loader --save-dev</code> 來安裝 css-loader 和 style-loader
+  這兩個 Loader 的功能分別是：
+    * css-loader 讓 Webpack 讀懂 CSS
+    * style-loader 讓 Webpack 知道如何將 CSS 帶入到模組中</p>
+
+<p>接著我們還要將 <code class="highlighter-rouge">Loader</code> 帶進 <code class="highlighter-rouge">webpack.config.js</code>
+  方法就是建立一個 <code class="highlighter-rouge">rule</code>，讓 Webpack 知道哪些副檔名的檔案要套用 <code class="highlighter-rouge">css-loader</code>。</p>
+
+<p>在 <code class="highlighter-rouge">module.exports</code> 建立 <code class="highlighter-rouge">module.rules</code>，塞入一個 object literal，
+  當中包含 <code class="highlighter-rouge">test</code> 和 <code class="highlighter-rouge">use</code> ，指定檔名和 <code class="highlighter-rouge">loader</code>。</p>
+
+<p>要注意 <code class="highlighter-rouge">use</code> 陣列所輸入的 loader 順序和打包處理順序是相反的。
+  打包的順序應該是先經過 <code class="highlighter-rouge">css-loader</code> 再經過 <code class="highlighter-rouge">style-loader</code>，
+  但是輸入的陣列卻要反過來寫：</p>
+
+<p><code class="highlighter-rouge">use: ['style-loader', 'css-loader']</code></p>
+
+<p>結果就是這樣：</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// webpack.config.js</span>
+<span class="kr">const</span> <span class="nx">webpack</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'webpack'</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'path'</span><span class="p">);</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">entry</span><span class="p">:</span> <span class="nx">path</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="s1">'src'</span><span class="p">,</span> <span class="s1">'main.js'</span><span class="p">),</span> <span class="c1">// abs path</span>
+  <span class="na">output</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">path</span><span class="p">:</span> <span class="nx">path</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="s1">'dist'</span><span class="p">),</span> <span class="c1">// abs path</span>
+    <span class="na">filename</span><span class="p">:</span> <span class="s1">'bundle.js'</span>
+  <span class="p">},</span>
+  <span class="na">module</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">rules</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="na">test</span><span class="p">:</span> <span class="sr">/</span><span class="se">\.</span><span class="sr">css$/</span><span class="p">,</span>  <span class="c1">// css file path regex</span>
+        <span class="na">use</span><span class="p">:</span> <span class="p">[</span><span class="s1">'style-loader'</span><span class="p">,</span> <span class="s1">'css-loader'</span><span class="p">]</span>  <span class="c1">// NOTE right to left</span>
+  <span class="p">}]}};</span>
+</code></pre>
+</div>
+
+<hr />
+
+<h2 id="lec-5-es2015-compilation-with-babel">Lec 5: ES2015 Compilation With Babel</h2>
+<p>打包的過程中也可以借助 <code class="highlighter-rouge">Babel</code> 將 ES6 轉譯，以支援更多瀏覽器。
+  這時候要使用 Webpack plugin，首先下載對應的套件與 Babel preset</p>
+
+<p><code class="highlighter-rouge">npm install --save-dev babel-loader babel-core babel-preset-es2015</code></p>
+
+<p>建立 <code class="highlighter-rouge">.babelrc</code></p>
+
+<p><code class="highlighter-rouge">echo "{\"presets\":[\"es2015\"]}" &gt; .babelrc</code></p>
+
+<p>就可以讓打包工作支援 ES6 了！</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// webpack.config.js</span>
+<span class="kr">const</span> <span class="nx">webpack</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'webpack'</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'path'</span><span class="p">);</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">entry</span><span class="p">:</span> <span class="nx">path</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="s1">'src'</span><span class="p">,</span> <span class="s1">'main.js'</span><span class="p">),</span> <span class="c1">// abs path</span>
+  <span class="na">output</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">path</span><span class="p">:</span> <span class="nx">path</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="s1">'dist'</span><span class="p">),</span> <span class="c1">// abs path</span>
+    <span class="na">filename</span><span class="p">:</span> <span class="s1">'bundle.js'</span>
+  <span class="p">},</span>
+  <span class="na">module</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">rules</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="na">test</span><span class="p">:</span> <span class="sr">/</span><span class="se">\.</span><span class="sr">js$/</span><span class="p">,</span>
+        <span class="na">exclude</span><span class="p">:</span> <span class="sr">/node_modules/</span><span class="p">,</span>
+        <span class="na">loader</span><span class="p">:</span> <span class="s1">'babel-loader'</span>
+  <span class="p">}]}};</span>
+</code></pre>
+</div>
+
+<hr />
+
+<h2 id="lec-6-minification-and-environments">Lec 6: Minification and Environments</h2>
+
+<p>這堂課介紹在 <code class="highlighter-rouge">Webpack.config.js</code> 中加入 plugin</p>
+
+<p><code class="highlighter-rouge">webpack.optimize.UglifyJsPlugin()</code></p>
+
+<p>就能夠將打包的檔案進行壓縮處理（minify）。</p>
+
+<p>我們也可以由環境變數來控制是否打包的時候要壓縮。</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kr">const</span> <span class="nx">webpack</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'webpack'</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'path'</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">inProduction</span> <span class="o">=</span> <span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">NODE_ENV</span> <span class="o">===</span> <span class="s1">'production'</span><span class="p">);</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">entry</span><span class="p">:</span> <span class="nx">path</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="s1">'src'</span><span class="p">,</span> <span class="s1">'main.js'</span><span class="p">),</span> <span class="c1">// abs path</span>
+  <span class="na">output</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">path</span><span class="p">:</span> <span class="nx">path</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="s1">'dist'</span><span class="p">),</span> <span class="c1">// abs path</span>
+    <span class="na">filename</span><span class="p">:</span> <span class="s1">'bundle.js'</span>
+  <span class="p">},</span>
+  <span class="na">module</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">rules</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="na">test</span><span class="p">:</span> <span class="sr">/</span><span class="se">\.</span><span class="sr">js$/</span><span class="p">,</span>
+        <span class="na">exclude</span><span class="p">:</span> <span class="sr">/node_modules/</span><span class="p">,</span>
+        <span class="na">loader</span><span class="p">:</span> <span class="s1">'babel-loader'</span>
+  <span class="p">}]},</span>
+  <span class="na">plugins</span><span class="p">:</span> <span class="p">[]</span>
+<span class="p">};</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nx">inProduction</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="p">.</span><span class="nx">plugins</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span>
+    <span class="k">new</span> <span class="nx">webpack</span><span class="p">.</span><span class="nx">optimize</span><span class="p">.</span><span class="nx">UglifyJsPlugin</span><span class="p">()</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<hr />
+
+<h2 id="lec-7-sass-compilation">Lec 7: Sass Compilation</h2>
+
+<p>介紹如何使用 <code class="highlighter-rouge">sass-loader</code> 將 Sass 檔案轉成 CSS 並套用在網頁上</p>
+
+<p>現在應該可以發現愈來愈能抓到 Webpack 使用的模式了</p>
+
+<p>就是安裝對應的 Loader 然後加一個對應的 Rule</p>
+
+<p><code class="highlighter-rouge">npm install --save-dev sass-loader node-sass</code></p>
+
+<p>在 <code class="highlighter-rouge">use</code> 的部份要想一下 loader 如何串起來。
+  處理 Sass 檔案的 rule 應該會是這樣：</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="p">{</span>
+  <span class="nl">test</span><span class="p">:</span> <span class="sr">/</span><span class="se">\.</span><span class="sr">s</span><span class="se">[</span><span class="sr">ac</span><span class="se">]</span><span class="sr">ss$/</span><span class="p">,</span>  <span class="c1">// sass, scss</span>
+  <span class="nx">use</span><span class="err">:</span> <span class="p">[</span><span class="s1">'style-loader'</span><span class="p">,</span> <span class="s1">'css-loader'</span><span class="p">,</span> <span class="s1">'sass-loader'</span><span class="p">]</span>
+<span class="p">},</span>
+</code></pre>
+</div>
+
+<p>一樣處理順序是從最後開始，先經過 sass-loader 處理 Sass 成 CSS，
+  再經過 css-loader 理解 CSS，
+  最後再經過 style-loader 將樣式帶到 <code class="highlighter-rouge">bundle.js</code> 中。</p>
+
+<hr />
+
+<h2 id="lec-8-extract-css-to-a-dedicated-file">* Lec 8: Extract CSS to a Dedicated File</h2>
+<p>這一堂課討論的情境是，
+  有時你還是希望 Sass 檔案不要被包進模組，
+  而是以獨立 CSS 檔案的方式輸出，以供他人維護。</p>
+
+<p>也就是說，你想要 Webpack 處理 Sass 成為 CSS，
+  但是最後又不要將它包到最終的 <code class="highlighter-rouge">bundle.js</code>
+  而是以 <code class="highlighter-rouge">app.css</code> 輸出。</p>
+
+<p>這時候我們要再裝一個新的外掛 <code class="highlighter-rouge">extract-text-webpack-plugin</code></p>
+
+<p><code class="highlighter-rouge">npm install --save-dev extract-text-webpack-plugin</code></p>
+
+<p>這個外掛可以將現有的 loader 組成一個新的 “Extract Loader”。
+  接著將特定的資源從來源中抽取出來，以不同的方式輸出。
+  新的 <code class="highlighter-rouge">module.rules</code> 項目變成這樣：</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kr">const</span> <span class="nx">ExtractTextPlugin</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'extract-text-webpack-plugin'</span><span class="p">);</span>
+
+<span class="c1">// ...</span>
+<span class="p">{</span>
+  <span class="nl">test</span><span class="p">:</span> <span class="sr">/</span><span class="se">\.</span><span class="sr">s</span><span class="se">[</span><span class="sr">ac</span><span class="se">]</span><span class="sr">ss$/</span><span class="p">,</span>  <span class="c1">// sass, scss</span>
+  <span class="nx">use</span><span class="err">:</span> <span class="nx">ExtractTextPlugin</span><span class="p">.</span><span class="nx">extract</span><span class="p">({</span>
+    <span class="na">use</span><span class="p">:</span> <span class="p">[</span><span class="s1">'css-loader'</span><span class="p">,</span> <span class="s1">'sass-loader'</span><span class="p">],</span>
+    <span class="na">fallback</span><span class="p">:</span> <span class="s1">'style-loader'</span>
+  <span class="p">})</span>
+<span class="p">},</span>
+</code></pre>
+</div>
+<p>可以發現它使用了 <code class="highlighter-rouge">css-loader</code> 和 <code class="highlighter-rouge">sass-loader</code> ，將之組成一個 “Extract Loader” 。
+  畢竟 Webpack 還是需要這兩個 loader 才能轉換 Sass 成 CSS。
+  而 <code class="highlighter-rouge">fallback</code> 設定 <code class="highlighter-rouge">style-loader</code> 是針對沒有辦法被抽取出來的 CSS，
+  要繼續用 <code class="highlighter-rouge">style-loader</code> 將樣式帶進 <code class="highlighter-rouge">bundle.js</code>。</p>
+
+<p>接著在 <code class="highlighter-rouge">plugins</code> 指定 CSS 輸出的名稱：</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">//...</span>
+<span class="nl">plugins</span><span class="p">:</span> <span class="p">[</span>
+  <span class="k">new</span> <span class="nx">ExtractTextPlugin</span><span class="p">(</span><span class="s1">'app.css'</span><span class="p">)</span>
+<span class="p">]</span>
+</code></pre>
+</div>
+
+<p>大功告成啦！最後得到了 <code class="highlighter-rouge">dist/bundle.js</code> 和 <code class="highlighter-rouge">dist/app.css</code></p>
+
+<hr />
+
+<h2 id="summary">Summary</h2>
+
+<ul>
+  <li>Webpack 主要功能就是幫你把資源打包成 JavaScript 模組。</li>
+  <li>Webpack 打包時會處理相依性，像是 js 裡的 <code class="highlighter-rouge">require</code> 和 CSS 裡的 <code class="highlighter-rouge">url</code> 都會被處理。</li>
+  <li>Webpack 藉由 <em>Loader</em> 在打包時幫你對各種格式的資源做處理，像 Sass, ES6，圖片。</li>
+  <li>Webpack 藉由 <em>Plugin</em> 客制化一些功能，像是抽取出 CSS 資源。</li>
+</ul>
+
+
+</div>
+<div id="toc"></div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/blog/2017/04/27/flexbox-learning-note-and-reviews/">
+            Flexbox Learning Note And Reviews |
+            <small>27 Apr 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/blog/2017/03/24/dev-note-for-promise/">
+            Dev Note for Promise |
+            <small>24 Mar 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/blog/2017/03/22/how-underscore-extends-object/">
+            How Underscore Extends Object |
+            <small>22 Mar 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+      
+
+<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = '//techidevnote.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+    </div>
+
+  </body>
+</html>

@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Dev Note for Promise &middot; Te-Chi's Dev Note
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"></script>
+  <!-- <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"></script> -->
+  <link rel="stylesheet" href="/blog/public/css/bootstrap-custom.css">
+  <link rel="stylesheet" href="/blog/public/css/poole.css">
+  <link rel="stylesheet" href="/blog/public/css/syntax.css">
+  <link rel="stylesheet" href="/blog/public/css/hyde.css">
+  <link rel="stylesheet" href="/blog/public/css/custom.css">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/blog/public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="/blog/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  <!-- JS -->
+  <!-- MathJax -->
+  <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <!-- toc.js -->
+  <script type="text/javascript" src="/blog/public/js/toc.js"></script>
+  <script type="text/javascript" src="/blog/public/js/app.js"></script>
+
+  <!-- Google Analytics -->
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-104892103-1', 'auto');
+  ga('send', 'pageview');
+  </script>
+
+</head>
+
+
+  <body class="theme-base-0a">
+
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/blog/">
+          Te-Chi's Dev Note
+        </a>
+      </h1>
+      <p class="lead">Web dev learning notes and reviews. Sharing my discovery of web tech and open source.</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="/blog/">Home</a>
+      <a class="sidebar-nav-item active" href="/blog/archives">Archives</a>
+      <a class="sidebar-nav-item active" href="/blog/projects">Projects</a>
+
+      
+
+      
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/blog/about/">About</a>
+          
+        
+      
+        
+          
+        
+      
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+
+      <span class="sidebar-nav-item">
+        <ul class="list-inline text-center">
+          
+          <li>
+            <a href="https://github.com/liuderchi" target="_blank">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-github fa-stack-1x"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+      </span>
+
+    </nav>
+
+    <p><small>&copy; 2017 | Te-Chi's Dev Note | All rights reserved.</small></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="post">
+  <h1 class="post-title">Dev Note for Promise</h1>
+  <span class="post-date tags">
+    24 Mar 2017
+    <i class="fa fa-tags" aria-hidden="true"></i>
+    
+      <a class="tag-wrapper"
+        href="/blog/tags/promise" rel="tooltip"
+        title="View posts tagged with &quot;promise&quot;">
+        <span class="tags">promise</span></a>&nbsp;
+    
+      <a class="tag-wrapper"
+        href="/blog/tags/js" rel="tooltip"
+        title="View posts tagged with &quot;js&quot;">
+        <span class="tags">js</span></a>&nbsp;
+    
+  </span>
+  <h2 id="abstract">Abstract</h2>
+
+<p>第一次接觸 Promise 的時候是在使用 AngularJS 提供的 <code class="highlighter-rouge">$http</code>，它是一個基於 <code class="highlighter-rouge">XMLHttpRequest</code> 的包裝，
+  回傳的物件是符合 <a href="https://promisesaplus.com/">Promise/A+</a> 的 Promise，因此要理解 Promise 的特性與表現，
+  才能夠正確的實作網頁應用中的非同步操作與使用者介面變化流程。</p>
+
+<p>然而在面對多個具有相依性的非同步操作，程式碼結構會變得複雜難以維護（波動拳式回呼）。
+  因此，希望藉著這個機會好好檢視 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">MDN 文件</a> 並學習如何撰寫風格良好的 Promise 程式碼。</p>
+
+<hr />
+
+<h2 id="promise-behavior-review">Promise Behavior Review</h2>
+
+<ul>
+  <li>Prmoise 就是用一個物件來表示未來會有執行的結果的工作，其 <strong>狀態</strong> 包含 3 種可能：
+    <ul>
+      <li>pending: 執行中</li>
+      <li>fulfilled：做了結果成功</li>
+      <li>rejected：做了結果失敗（不一定做完）</li>
+      <li>Prmoise 剛建立的時候是 pending，未來只可能會變成 fulfilled 或是 rejected <strong>其中一種</strong></li>
+    </ul>
+  </li>
+  <li>可以對 Promise 繫結你想要的 <em>Callback</em> 來針對狀態的改變執行對應函式
+    <ul>
+      <li><code class="highlighter-rouge">myPromise.then(onFulfilled, onRejected)</code></li>
+      <li><em>Q：</em> 什麼時候呼 Callback？
+        <ul>
+          <li>看 <code class="highlighter-rouge">myPromise</code> 狀態</li>
+          <li>變成 fulfilled 時呼 <code class="highlighter-rouge">onFulfilled</code></li>
+          <li>變成 rejected 時呼 <code class="highlighter-rouge">onRejected</code></li>
+          <li>該 Promise 有結果的時候，狀態就會變</li>
+        </ul>
+      </li>
+      <li><em>Q：</em> 這兩個 Callback 可以做什麼？
+        <ul>
+          <li>接收 <code class="highlighter-rouge">myPromise</code> 提供的訊息並處理，舉例來說
+            <ul>
+              <li><code class="highlighter-rouge">myPromise</code> 成功的話寫 <code class="highlighter-rouge">onFulfilled(val)</code> 處理執行結果</li>
+              <li><code class="highlighter-rouge">myPromise</code> 失敗寫 <code class="highlighter-rouge">onRejected(reason)</code> 印出失敗原因</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Promise 可以串聯
+    <ul>
+      <li>因為 <code class="highlighter-rouge">myPromise.then()</code> <strong>必定會回傳一個 Promise 給你接著用</strong>，不論該 Callback 的結果是成功還是失敗</li>
+      <li><em>Q：</em> <code class="highlighter-rouge">.then()</code> 回傳什麼狀態的 Promise？
+        <ul>
+          <li>如果執行 Callback 的時候拋錯（不論是 <code class="highlighter-rouge">onFulfilled</code> 還是 <code class="highlighter-rouge">onRejected</code>），或是最後回傳了另一個 <em>做了結果失敗的 Promise （rejected）</em> ，
+            <ul>
+              <li>那 <code class="highlighter-rouge">.then()</code> 就會回傳一個狀態為 rejected 的 Promise</li>
+            </ul>
+          </li>
+          <li>如果執行 Callback 的時候（不論是 <code class="highlighter-rouge">onFulfilled</code> 還是 <code class="highlighter-rouge">onRejected</code>）回傳了任何值（包含 undefined），或是最後回傳了另一個 <em>做了結果成功的 Promise （fulfilled）</em>
+            <ul>
+              <li>那 <code class="highlighter-rouge">.then()</code> 就會回傳一個狀態為 fulfilled 的 Promise</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>所以 <code class="highlighter-rouge">.then()</code> 回傳什麼樣的 Promise 要等 Callback 的結果才會知道
+        <ul>
+          <li>因為要等，所以這樣就能夠讓多個 Async 的工作有一定的執行順序</li>
+        </ul>
+      </li>
+      <li>所以 <code class="highlighter-rouge">.then(...)</code> 可以串聯接著用，像是鎖鏈</li>
+      <li>練習以 Promise 鎖鏈造句：家長對小孩的期待</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nx">beGoodKid</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">beGoodStudent</span><span class="p">,</span> <span class="p">...)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">workSuccess</span><span class="p">,</span> <span class="p">...)</span>
+</code></pre>
+</div>
+
+<hr />
+
+<h2 id="promise-chain-practice">Promise Chain Practice</h2>
+
+<ul>
+  <li>好習慣：<code class="highlighter-rouge">onFulfilled</code> 函式回傳一個 Promise
+    <ul>
+      <li>因為根據上一段，<code class="highlighter-rouge">.then()</code> 在內部的 Callback 如果回傳了 rejected Promise，那 <code class="highlighter-rouge">.then()</code> 最後就會回傳該 rejected Promise</li>
+      <li>這樣可以讓鎖鏈的下一個 <code class="highlighter-rouge">.then()</code> 根據上一個 Promise 的狀態來做對應處理</li>
+    </ul>
+  </li>
+  <li>所以可以這樣說，<code class="highlighter-rouge">.then()</code> 要提供 <code class="highlighter-rouge">onRejected</code>，才可以處理前面產生的 rejected 的 Promise</li>
+  <li>但是，每一個 <code class="highlighter-rouge">myPromise.then().then()</code> 裏面都要寫一個 <code class="highlighter-rouge">onRejected</code> 實在是不好維護</li>
+  <li><em>Q：</em> 如果不提供 <code class="highlighter-rouge">onRejected</code> 的話會怎樣？
+    <ul>
+      <li>例如：<code class="highlighter-rouge">myPromise.then(onFulfilled)</code>
+        <ul>
+          <li><code class="highlighter-rouge">myPromise</code> 最後 fulfilled 的話就照原先，執行 <code class="highlighter-rouge">onFulfilled</code></li>
+          <li><code class="highlighter-rouge">myPromise</code> 最後 rejected 的話 <code class="highlighter-rouge">.then()</code> 就會回傳原本就是 rejected 的 <code class="highlighter-rouge">myPromise</code></li>
+        </ul>
+      </li>
+      <li>按：你不提供處理辦法，我就丟給下一位</li>
+    </ul>
+  </li>
+  <li>所以，這裡提供另一個好習慣：在鎖鏈的尾端要有 <code class="highlighter-rouge">onRejected</code> 處理先前任一 Promise 所產生的失敗結果
+    <ul>
+      <li>或者使用只處理 rejected 狀態的 <code class="highlighter-rouge">myPromise.catch(onRejected)</code></li>
+      <li>這樣可以寫出好讀的 Promise 鎖鏈</li>
+    </ul>
+  </li>
+  <li>鎖鏈造句：家長對小孩的期待範例（二）</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nx">beGoodKid</span><span class="p">()</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">beGoodStudent</span><span class="p">()</span>  <span class="c1">// it's async</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">workSuccess</span><span class="p">()</span>    <span class="c1">// it's async</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">warn</span><span class="p">(</span><span class="s1">'your parents are angry'</span><span class="p">)</span>
+  <span class="p">}</span>
+</code></pre>
+</div>
+<ul>
+  <li>
+    <p>按：只要一件事情沒做好，後面就沒機會了。</p>
+  </li>
+  <li>
+    <p>一個很喜歡的簡潔範例，以 Promise 結合 array 的 <code class="highlighter-rouge">reduce()</code>，依序於 Atom 編輯器開啟多個檔案</p>
+  </li>
+</ul>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kr">const</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'path'</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">os</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'os'</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">paths</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'file.one'</span><span class="p">,</span> <span class="s1">'file.two'</span><span class="p">,</span> <span class="s1">'file.three'</span><span class="p">];</span>
+
+<span class="nx">paths</span><span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">cur</span><span class="p">,</span> <span class="nx">nextPath</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">cur</span><span class="p">.</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>  <span class="c1">// return .then() for next promise</span>
+    <span class="k">return</span> <span class="nx">atom</span><span class="p">.</span><span class="nx">workspace</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="nx">nextPath</span><span class="p">);</span>  <span class="c1">// return an open job as a promise</span>
+  <span class="p">});</span>
+<span class="p">},</span> <span class="nx">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="s1">'start'</span><span class="p">));</span>  <span class="c1">// init promise</span>
+</code></pre>
+</div>
+
+<hr />
+
+<h2 id="summary">Summary</h2>
+
+<ul>
+  <li>Promise 專門用來處理未來才會完成的工作，以狀態來表現工作結果</li>
+  <li>使用 <code class="highlighter-rouge">.then(onFulfilled, onRejected)</code> 讓 Promise 的狀態變化會觸發對應的 Callback</li>
+  <li><code class="highlighter-rouge">.then()</code> 和 <code class="highlighter-rouge">.catch()</code> 必定回傳一個 Promise ，這個特性讓你可以把 Promise 串成鎖鏈，有相依性的執行數個非同步工作</li>
+  <li>養成良好的 Promise 鎖鏈習慣可以讓你撰寫好維護的程式碼</li>
+</ul>
+
+
+</div>
+<div id="toc"></div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/blog/2017/04/27/flexbox-learning-note-and-reviews/">
+            Flexbox Learning Note And Reviews |
+            <small>27 Apr 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/blog/2017/03/22/how-underscore-extends-object/">
+            How Underscore Extends Object |
+            <small>22 Mar 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/blog/2017/03/16/learning-webpack-from-scratch/">
+            Learning Webpack from Scratch |
+            <small>16 Mar 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+      
+
+<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = '//techidevnote.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+    </div>
+
+  </body>
+</html>
